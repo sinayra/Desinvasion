@@ -1,12 +1,11 @@
 #pragma once
 
 #include "State.h"
-#include "Background.h"
 
-class State_op : public State{
+class State_end : public State{
 
     public:
-        void load(int stack = 0);
+        void load(tipoGame stack = GAME_NO_CHANGE);
         void unload();
         int update(int dt);
         void render();
