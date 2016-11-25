@@ -7,5 +7,7 @@ class playAPCBase{
 
     public:
         static bool inicializaPlayAPC();
+        static void render();
+        static void freeze();
 
 };

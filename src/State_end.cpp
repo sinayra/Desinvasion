@@ -1,19 +1,23 @@
 #include "../include/State_end.h"
 
 void State_end::load(tipoGame stack){
-
+    cout << "Ending" << endl;
 }
 
 void State_end::unload(){
 
 }
 
-int State_end::update(int dt){
+tipoGame State_end::update(){
 
-    return 1;
+    if(ApertouTecla(TECLA_ENTER))
+        return GAME_END;
+
+    return GAME_NO_CHANGE;
 }
 
 void State_end::render(){
 
+    playAPCBase::render();
 }
 

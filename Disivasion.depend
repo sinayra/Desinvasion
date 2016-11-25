@@ -8,23 +8,30 @@
 	"../include/State_manager.h"
 	"../include/playAPCBase.h"
 
-1480048752 c:\users\nayra\documents\github\disinvasion\include\state_manager.h
+1480050858 c:\users\nayra\documents\github\disinvasion\include\state_manager.h
 	"State_op.h"
 	"State_play.h"
 	"State_end.h"
+	"Input.h"
 
-1480049371 c:\users\nayra\documents\github\disinvasion\include\state_op.h
+1480051330 c:\users\nayra\documents\github\disinvasion\include\state_op.h
 	"State.h"
+	"Background.h"
 
-1480049371 c:\users\nayra\documents\github\disinvasion\include\state.h
+1480051600 c:\users\nayra\documents\github\disinvasion\include\state.h
+	<iostream>
+	"playAPCBase.h"
+	"Input.h"
 
-1480049461 c:\users\nayra\documents\github\disinvasion\include\state_play.h
+1480051330 c:\users\nayra\documents\github\disinvasion\include\state_play.h
 	"State.h"
+	"Background.h"
 
-1480049371 c:\users\nayra\documents\github\disinvasion\include\state_end.h
+1480051330 c:\users\nayra\documents\github\disinvasion\include\state_end.h
 	"State.h"
+	"Background.h"
 
-1480049016 c:\users\nayra\documents\github\disinvasion\include\playapcbase.h
+1480051550 c:\users\nayra\documents\github\disinvasion\include\playapcbase.h
 	<playAPC/playapc.h>
 
 1480048668 source:c:\users\nayra\documents\github\disinvasion\src\mateus.cpp
@@ -37,18 +44,24 @@
 
 1480048574 c:\users\nayra\documents\github\disinvasion\include\ovelha.h
 
-1480049080 source:c:\users\nayra\documents\github\disinvasion\src\playapcbase.cpp
+1480051330 source:c:\users\nayra\documents\github\disinvasion\src\playapcbase.cpp
 	"../include/playAPCBase.h"
 
-1480049016 source:c:\users\nayra\documents\github\disinvasion\src\state_manager.cpp
+1480050843 source:c:\users\nayra\documents\github\disinvasion\src\state_manager.cpp
 	"State_manager.h"
 
-1480049404 source:c:\users\nayra\documents\github\disinvasion\src\state_end.cpp
-	"State_op.h"
+1480051347 source:c:\users\nayra\documents\github\disinvasion\src\state_end.cpp
+	"../include/State_end.h"
 
-1480049522 source:c:\users\nayra\documents\github\disinvasion\src\state_op.cpp
+1480051330 source:c:\users\nayra\documents\github\disinvasion\src\state_op.cpp
 	"../include/State_op.h"
 
-1480049461 source:c:\users\nayra\documents\github\disinvasion\src\state_play.cpp
+1480051330 source:c:\users\nayra\documents\github\disinvasion\src\state_play.cpp
 	"../include/State_play.h"
+
+1480050732 source:c:\users\nayra\documents\github\disinvasion\src\input.cpp
+	"../include/Input.h"
+
+1480050812 c:\users\nayra\documents\github\disinvasion\include\input.h
+	<playAPC/playapc.h>
 

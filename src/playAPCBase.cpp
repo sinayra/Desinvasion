@@ -8,3 +8,11 @@ bool playAPCBase::inicializaPlayAPC(){
     else
         return false;
 }
+
+void playAPCBase::render(){
+    Desenha1Frame();
+}
+
+void playAPCBase::freeze(){
+    Desenha();
+}
