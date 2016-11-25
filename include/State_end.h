@@ -2,6 +2,7 @@
 
 #include "State.h"
 #include "Background.h"
+#include "Imagem.h"
 
 class State_end : public State{
 
@@ -10,4 +11,8 @@ class State_end : public State{
         void unload();
         tipoGame update();
         void render();
+
+    private:
+        Background *instancebg;
+        Imagem *instanceimg;
 };
