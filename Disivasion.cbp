@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -31,6 +33,26 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="include/Background.h" />
+		<Unit filename="include/Input.h" />
+		<Unit filename="include/Mateus.h" />
+		<Unit filename="include/Ovelha.h" />
+		<Unit filename="include/State.h" />
+		<Unit filename="include/State_end.h" />
+		<Unit filename="include/State_manager.h" />
+		<Unit filename="include/State_op.h" />
+		<Unit filename="include/State_play.h" />
+		<Unit filename="include/playAPCBase.h" />
+		<Unit filename="src/Background.cpp" />
+		<Unit filename="src/Input.cpp" />
+		<Unit filename="src/Mateus.cpp" />
+		<Unit filename="src/Ovelha.cpp" />
+		<Unit filename="src/State_end.cpp" />
+		<Unit filename="src/State_manager.cpp" />
+		<Unit filename="src/State_op.cpp" />
+		<Unit filename="src/State_play.cpp" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/playAPCBase.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
