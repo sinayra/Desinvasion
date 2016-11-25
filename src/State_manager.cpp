@@ -8,7 +8,7 @@ State_manager::State_manager(){
 
     input->update();
 
-    stack = GAME_START;
+    stack = GAME_PLAY;
 }
 
 State_manager::~State_manager(){

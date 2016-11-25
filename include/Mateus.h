@@ -7,14 +7,23 @@
 class Mateus
 {
     public:
-        Mateus(int x, int y, int tamw, int tamh);
+        Mateus(float x, float y, float tamw, float tamh, int i, int j);
         virtual ~Mateus();
 
         void update(int ovelhas_mortas);
 
+        int getCoordi();
+        int getCoordj();
+
+        void setCoordi(int i);
+        void setCoordj(int j);
+
+        void setPosicao(float x);
+
     private:
         int coordx, coordy;
-        int mateusq;
+        int coordi, coordj;
+        int mateusq, mateusg;
         int combo_ovelhas = 0;
         Imagem *instanceimg;
 };

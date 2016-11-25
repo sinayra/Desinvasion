@@ -1,7 +1,15 @@
 #include "../include/State_op.h"
 
 void State_op::load(tipoGame stack){
+    int img;
+
+    instancebg = Background::getInstance();
+    instanceimg = Imagem::getInstance();
+
     cout << "Opening" << endl;
+    img = instanceimg->getImg(Imagem::BG_INICIO);
+
+    instancebg->setBG(img);
 }
 
 void State_op::unload(){

@@ -14,5 +14,6 @@ void playAPCBase::render(){
 }
 
 void playAPCBase::freeze(){
-    Desenha();
+    if(Desenha1Frame())
+        Desenha();
 }

@@ -5,8 +5,8 @@
 #include "Imagem.h"
 #include "Mateus.h"
 
-const int MAP_X_DIM = 9;
-const int MAP_Y_DIM = 9;
+const int MAP_X_DIM = 10;
+const int MAP_Y_DIM = 10;
 
 class State_play : public State{
     private:
@@ -23,6 +23,7 @@ class State_play : public State{
         Ponto mapaVisu[MAP_X_DIM][MAP_Y_DIM];
         Background *instancebg;
         Imagem *instanceimg;
+        Mateus *mateus;
 
     public:
         void load(tipoGame stack = GAME_NO_CHANGE);

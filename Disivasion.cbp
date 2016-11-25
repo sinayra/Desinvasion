@@ -34,6 +34,7 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="include/Background.h" />
+		<Unit filename="include/Imagem.h" />
 		<Unit filename="include/Input.h" />
 		<Unit filename="include/Mateus.h" />
 		<Unit filename="include/Ovelha.h" />
@@ -44,6 +45,7 @@
 		<Unit filename="include/State_play.h" />
 		<Unit filename="include/playAPCBase.h" />
 		<Unit filename="src/Background.cpp" />
+		<Unit filename="src/Imagem.cpp" />
 		<Unit filename="src/Input.cpp" />
 		<Unit filename="src/Mateus.cpp" />
 		<Unit filename="src/Ovelha.cpp" />
