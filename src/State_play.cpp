@@ -14,7 +14,7 @@ void State_play::load(tipoGame stack){
     p.y = HEIGHT - cellHeight;
     for(int i = 0; i < MAP_X_DIM; i++){
         p.x = -WIDTH;
-        for(int j = 0; j < MAP_Y_DIM + 1; j++){
+        for(int j = 0; j < MAP_Y_DIM; j++){
             mapaLogico[i][j] = VAZIO;
             mapaVisu[i][j] = p;
 
@@ -23,30 +23,11 @@ void State_play::load(tipoGame stack){
         p.y -= cellHeight;
     }
 
-    mapaLogico[5][0] = ICC;
-    mapaLogico[5][1] = ICC;
-    mapaLogico[6][2] = ICC;
-    mapaLogico[6][3] = ICC;
-    mapaLogico[6][4] = ICC;
-    mapaLogico[6][5] = ICC;
-    mapaLogico[6][6] = ICC;
-    mapaLogico[6][7] = ICC;
-    mapaLogico[5][8] = ICC;
-    mapaLogico[5][9] = ICC;
-
-    /** Debug (exibindo matriz de visualização) **/
     for(int i = 0; i < MAP_X_DIM; i++){
         for(int j = 0; j < MAP_Y_DIM; j++){
-
-            if(mapaLogico[i][j] == VAZIO){
-                CriaPonto(mapaVisu[i][j]);
-                Pintar(0, 255, 0);
-                Grafite(5);
-            }
-            else{
-                CriaRetangulo(cellWidth - 2, cellHeight - 2, mapaVisu[i][j]);
-                Pintar(255, 0, 0);
-            }
+            CriaPonto(mapaVisu[i][j]);
+            Pintar(255, 0, 0);
+            Grafite(5);
         }
     }
 
@@ -59,6 +40,8 @@ void State_play::load(tipoGame stack){
     p = mapaVisu[MAP_X_DIM - 1][MAP_Y_DIM/2];
 
     mateus = new Mateus(p.x, p.y, cellWidth, cellHeight, MAP_X_DIM - 1, MAP_Y_DIM/2);
+    mapaLogico[MAP_X_DIM - 1][MAP_Y_DIM/2] = MATEUS;
+
 }
 
 void State_play::unload(){
@@ -71,24 +54,24 @@ void State_play::checkCollision(){
 }
 
 tipoGame State_play::update(){
-    int j;
+    int j = mateus->getCoordj();
 
-    /***********************
-    ** Updates do Mateus  **
-    ************************/
-    mateus->update(0);
-    j = mateus->getCoordj();
+    if(ApertouTecla(TECLA_ESQ) && j > 0){
+        mapaLogico[MAP_X_DIM - 1][j] = VAZIO;
 
-    //Verifica se passou dos limites do mapa
-    if(j < 0)
-        mateus->setCoordj(++j);
-    else if(j > MAP_Y_DIM - 1)
-        mateus->setCoordj(--j);
+        j--;
+        mateus->setPosicao(mapaVisu[MAP_X_DIM - 1][j].x);
+        mateus->setCoordj(j);
+        mapaLogico[MAP_X_DIM - 1][j] = MATEUS;
+    }
+    if(ApertouTecla(TECLA_DIR) && j < MAP_Y_DIM - 1){
+        mapaLogico[MAP_X_DIM - 1][j] = VAZIO;
 
-    if(mateus->getAtaque()) //Se ele atacou e este ataque é o da mão esquerda
         j++;
-
-    mateus->setPosicao(mapaVisu[MAP_X_DIM - 1][j].x); //Atualiza posição do Mateus
+        mateus->setPosicao(mapaVisu[MAP_X_DIM - 1][j].x);
+        mateus->setCoordj(j);
+        mapaLogico[MAP_X_DIM - 1][j] = MATEUS;
+    }
 
     if(ApertouTecla(TECLA_ENTER))
         return GAME_WIN;

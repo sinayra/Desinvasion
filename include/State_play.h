@@ -12,14 +12,15 @@ class State_play : public State{
     private:
         typedef enum{
             VAZIO,
+            MATEUS,
             OVELHA,
             TIRO,
             ICC,
             INVADIDO
         }cellState;
 
-        cellState mapaLogico[MAP_X_DIM][MAP_Y_DIM + 1];
-        Ponto mapaVisu[MAP_X_DIM][MAP_Y_DIM + 1]; //esse +1 é para ajustar o ataque do Mateus, somente para a visualização do ataque
+        cellState mapaLogico[MAP_X_DIM][MAP_Y_DIM];
+        Ponto mapaVisu[MAP_X_DIM][MAP_Y_DIM];
         Background *instancebg;
         Imagem *instanceimg;
         Mateus *mateus;

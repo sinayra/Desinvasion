@@ -2,7 +2,7 @@
 
 #include "Input.h"
 #include "Imagem.h"
-#include "playAPCBase.h"
+#include <playAPC/playapc.h>
 
 class Mateus
 {
@@ -11,8 +11,6 @@ class Mateus
         virtual ~Mateus();
 
         void update(int ovelhas_mortas);
-
-        int getAtaque();
 
         int getCoordi();
         int getCoordj();
@@ -27,8 +25,6 @@ class Mateus
         int coordi, coordj;
         int mateusq, mateusg;
         int combo_ovelhas = 0;
-        int combo_ataque = 0;
-        bool ataque = false;
         Imagem *instanceimg;
 };
 

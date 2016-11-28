@@ -7,14 +7,13 @@ using namespace std;
 class Imagem{
     public:
         typedef enum{
-            JOGADOR_STAND,
-            JOGADOR_ATTACK,
+            JOGADOR_1,
+            JOGADOR_2,
             OVELHA,
             LIVRO,
             BG_INICIO,
             BG_JOGO,
-            BG_END,
-            NADA
+            BG_END
         }tipoImg;
 
         int getImg(tipoImg img);
