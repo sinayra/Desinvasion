@@ -1,6 +1,7 @@
 #pragma once
 
 #include <playAPC/playapc.h>
+#include <GL/glfw.h>
 
 class playAPCBase{
     private:
@@ -10,4 +11,6 @@ class playAPCBase{
         static void render();
         static void freeze();
 
+        static void tic();
+        static double tac();
 };

@@ -17,3 +17,11 @@ void playAPCBase::freeze(){
     if(Desenha1Frame())
         Desenha();
 }
+
+void playAPCBase::tic(){
+    glfwSetTime(0);
+}
+
+double playAPCBase::tac(){
+    return glfwGetTime();
+}
