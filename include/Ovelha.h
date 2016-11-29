@@ -1,16 +1,13 @@
-#ifndef OVELHA_H
-#define OVELHA_H
+#include "playAPCBase.h"
+#include <playAPC/playapc.h>
 
-
-class Ovelha
-{
+class Ovelha{
     public:
-        Ovelha();
+        Ovelha(float x, float y, float tamw, float tamh, int i, int j);
         virtual ~Ovelha();
 
-    protected:
-
     private:
+        bool atingiu;
+        int coordy, coordx, coordi, coordj;
+        int ovelhaq, ovelhag;
 };
-
-#endif // OVELHA_H

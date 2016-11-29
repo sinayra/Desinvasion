@@ -85,8 +85,10 @@ tipoGame State_play::update(){
     else if(j > MAP_Y_DIM - 1)
         mateus->setCoordj(--j);
 
-    if(mateus->getAtaque()) //Se ele atacou e este ataque é o da mão esquerda
-        j++;
+    if(mateus->getAtirou()){
+        if(mateus->getCombo()) //é o da mão esquerda
+            j++;
+    }
 
     mateus->setPosicao(mapaVisu[MAP_X_DIM - 1][j].x); //Atualiza posição do Mateus
 

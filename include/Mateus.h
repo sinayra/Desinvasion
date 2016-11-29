@@ -12,7 +12,8 @@ class Mateus
 
         void update(int ovelhas_mortas);
 
-        int getAtaque();
+        int getCombo();
+        bool getAtirou();
 
         int getCoordi();
         int getCoordj();

@@ -18,7 +18,11 @@ Mateus::Mateus(float x, float y, float tamw, float tamh, int i, int j): coordx(x
     AssociaImagem(img, RETANGULO, this->mateusq); /**/
 }
 
-int Mateus::getAtaque(){
+bool Mateus::getAtirou(){
+    return this->ataque;
+}
+
+int Mateus::getCombo(){
     return this->combo_ataque;
 }
 
@@ -58,7 +62,6 @@ void Mateus::update(int ovelhas_mortas){
     }
 
     if(ApertouTecla(TECLA_ESPACO)){
-        this->ataque = true;
         playAPCBase::tic();
 
         instanceimg = Imagem::getInstance();
@@ -68,19 +71,28 @@ void Mateus::update(int ovelhas_mortas){
 
         this->combo_ataque = (this->combo_ataque + 1) % 2;
 
+        if(!this->ataque){
+            this->ataque = true;
+            this->coordy += 100;
+        }
+
         if(this->combo_ataque){
-            Redimensiona(-1, 1, mateusg); /**/
+            Redimensiona(-1, 2, mateusg); /**/
         }
         else{
-            Redimensiona(1, 1, mateusg); /**/
+            Redimensiona(1, 2, mateusg); /**/
         }
     }
 
     if(this->ataque && playAPCBase::tac() > 1){
+        this->ataque = false;
         instanceimg = Imagem::getInstance();
         img = instanceimg->getImg(Imagem::JOGADOR_STAND);
 
         AssociaImagem(img, RETANGULO, this->mateusq); /**/
+        this->coordy -= 100;
+
+        Redimensiona(1, 1, mateusg); /**/
     }
 }
 
