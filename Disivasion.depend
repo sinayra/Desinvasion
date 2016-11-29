@@ -99,35 +99,43 @@
 	"playAPCBase.h"
 	"Input.h"
 
-1480368500 d:\github\disinvasion\include\playapcbase.h
+1480453649 d:\github\disinvasion\include\playapcbase.h
 	<playAPC/playapc.h>
-	<GL/glfw.h>
+	<chrono>
 
-1480368500 d:\github\disinvasion\include\state_play.h
+1480453341 d:\github\disinvasion\include\state_play.h
 	"State.h"
 	"Background.h"
 	"Imagem.h"
 	"Mateus.h"
+	"Ovelha.h"
+	<vector>
+	<stdlib.h>
 
 1480105705 d:\github\disinvasion\include\state_end.h
 	"State.h"
 	"Background.h"
 	"Imagem.h"
 
-1480444232 source:d:\github\disinvasion\src\mateus.cpp
+1480453615 source:d:\github\disinvasion\src\mateus.cpp
 	"../include/Mateus.h"
 
-1480444088 d:\github\disinvasion\include\mateus.h
+1480452765 d:\github\disinvasion\include\mateus.h
 	"Input.h"
 	"Imagem.h"
 	"playAPCBase.h"
+	<chrono>
 
-1480097363 source:d:\github\disinvasion\src\ovelha.cpp
+1480453615 source:d:\github\disinvasion\src\ovelha.cpp
 	"../include/Ovelha.h"
 
-1480097363 d:\github\disinvasion\include\ovelha.h
+1480453615 d:\github\disinvasion\include\ovelha.h
+	"playAPCBase.h"
+	"Imagem.h"
+	<playAPC/playapc.h>
+	<iostream>
 
-1480368500 source:d:\github\disinvasion\src\playapcbase.cpp
+1480453615 source:d:\github\disinvasion\src\playapcbase.cpp
 	"../include/playAPCBase.h"
 
 1480105675 source:d:\github\disinvasion\src\state_end.cpp
@@ -139,7 +147,7 @@
 1480105070 source:d:\github\disinvasion\src\state_op.cpp
 	"../include/State_op.h"
 
-1480444088 source:d:\github\disinvasion\src\state_play.cpp
+1480453341 source:d:\github\disinvasion\src\state_play.cpp
 	"../include/State_play.h"
 
 1480368500 d:\github\disinvasion\include\imagem.h

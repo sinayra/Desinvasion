@@ -62,7 +62,7 @@ void Mateus::update(int ovelhas_mortas){
     }
 
     if(ApertouTecla(TECLA_ESPACO)){
-        playAPCBase::tic();
+        this->tic = playAPCBase::tempo();
 
         instanceimg = Imagem::getInstance();
         img = instanceimg->getImg(Imagem::JOGADOR_ATTACK);
@@ -84,7 +84,7 @@ void Mateus::update(int ovelhas_mortas){
         }
     }
 
-    if(this->ataque && playAPCBase::tac() > 1){
+    if(this->ataque && playAPCBase::duracao(this->tic, 500) ){
         this->ataque = false;
         instanceimg = Imagem::getInstance();
         img = instanceimg->getImg(Imagem::JOGADOR_STAND);

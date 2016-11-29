@@ -3,6 +3,9 @@
 #include "Input.h"
 #include "Imagem.h"
 #include "playAPCBase.h"
+#include <chrono>
+
+using namespace std::chrono;
 
 class Mateus
 {
@@ -31,4 +34,6 @@ class Mateus
         int combo_ataque = 0;
         bool ataque = false;
         Imagem *instanceimg;
+
+        milliseconds tic;
 };

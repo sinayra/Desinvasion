@@ -4,6 +4,9 @@
 #include "Background.h"
 #include "Imagem.h"
 #include "Mateus.h"
+#include "Ovelha.h"
+#include <vector>
+#include <stdlib.h>
 
 const int MAP_X_DIM = 10;
 const int MAP_Y_DIM = 10;
@@ -23,6 +26,7 @@ class State_play : public State{
         Background *instancebg;
         Imagem *instanceimg;
         Mateus *mateus;
+        vector<Ovelha*> ovelhas;
 
     public:
         void load(tipoGame stack = GAME_NO_CHANGE);

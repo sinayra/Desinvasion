@@ -18,10 +18,13 @@ void playAPCBase::freeze(){
         Desenha();
 }
 
-void playAPCBase::tic(){
-    glfwSetTime(0);
+milliseconds playAPCBase::tempo(){
+    return duration_cast< milliseconds >(system_clock::now().time_since_epoch());
 }
 
-double playAPCBase::tac(){
-    return glfwGetTime();
+bool playAPCBase::duracao(milliseconds tic, int tempo){
+    if(duration_cast<milliseconds>(playAPCBase::tempo() - tic).count() > tempo)
+        return true;
+    else
+        return false;
 }

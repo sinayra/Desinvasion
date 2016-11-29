@@ -46,7 +46,6 @@
 		<Unit filename="include/State_manager.h" />
 		<Unit filename="include/State_op.h" />
 		<Unit filename="include/State_play.h" />
-		<Unit filename="include/Tiro.h" />
 		<Unit filename="include/playAPCBase.h" />
 		<Unit filename="src/Background.cpp" />
 		<Unit filename="src/Imagem.cpp" />
@@ -57,7 +56,6 @@
 		<Unit filename="src/State_manager.cpp" />
 		<Unit filename="src/State_op.cpp" />
 		<Unit filename="src/State_play.cpp" />
-		<Unit filename="src/Tiro.cpp" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/playAPCBase.cpp" />
 		<Extensions>

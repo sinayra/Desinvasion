@@ -1,7 +1,8 @@
 #pragma once
 
 #include <playAPC/playapc.h>
-#include <GL/glfw.h>
+#include <chrono>
+using namespace std::chrono;
 
 class playAPCBase{
     private:
@@ -11,6 +12,6 @@ class playAPCBase{
         static void render();
         static void freeze();
 
-        static void tic();
-        static double tac();
+        static milliseconds tempo();
+        static bool duracao(milliseconds tic, int tempo);
 };
