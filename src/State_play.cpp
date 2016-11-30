@@ -36,7 +36,7 @@ void State_play::load(tipoGame stack){
     this->mapaLogico[5][9] = ICC;
 
     /** Debug (exibindo matriz de visualização) **/
-    for(int i = 0; i < MAP_X_DIM; i++){
+    /*for(int i = 0; i < MAP_X_DIM; i++){
         for(int j = 0; j < MAP_Y_DIM; j++){
 
             if(this->mapaLogico[i][j] == VAZIO){
@@ -49,7 +49,7 @@ void State_play::load(tipoGame stack){
                 Pintar(255, 0, 0);
             }
         }
-    }
+    }*/
 
     this->instancebg = Background::getInstance();
     this->instanceimg = Imagem::getInstance();
@@ -62,7 +62,7 @@ void State_play::load(tipoGame stack){
     this->mateus = new Mateus(p.x, p.y, cellWidth, cellHeight, MAP_X_DIM - 1, MAP_Y_DIM/2);
 
     for(int i = 0; i < MAP_Y_DIM; i++){
-        this->ovelhas.push_back(new Ovelha(this->mapaVisu[0][i].x, this->mapaVisu[0][0].y, cellWidth, cellHeight, 0, i));
+        this->ovelhas.push_back(new Ovelha(this->mapaVisu[0][i].x + 3, this->mapaVisu[0][0].y, (cellWidth) * 0.75, (cellHeight + 10) * 0.75, 0, i));
         this->mapaLogico[0][i] = OVELHA;
         this->ovelhas[i]->setVel(velocidade);
 
@@ -71,7 +71,11 @@ void State_play::load(tipoGame stack){
 }
 
 void State_play::unload(){
+    delete(this->mateus);
 
+    for(int i = 0; i < MAP_Y_DIM; i++){
+        delete(this->ovelhas[i]);
+    }
 }
 
 
@@ -129,7 +133,9 @@ tipoGame State_play::update(){
         }
     }
 
-    if(ApertouTecla(TECLA_ENTER))
+    if(ApertouTecla('W'))
+        return GAME_WIN;
+    if(ApertouTecla('L'))
         return GAME_WIN;
 
     return GAME_NO_CHANGE;

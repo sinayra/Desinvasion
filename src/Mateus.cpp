@@ -97,5 +97,5 @@ void Mateus::update(int ovelhas_mortas){
 }
 
 Mateus::~Mateus(){
-    //dtor
+    ApagaGrupo(mateusg);
 }

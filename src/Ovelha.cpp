@@ -67,5 +67,6 @@ void Ovelha::update(){
 }
 
 Ovelha::~Ovelha(){
-    //dtor
+    CriaGrupo(); //bug da playAPC
+    ApagaGrupo(this->ovelhag);
 }

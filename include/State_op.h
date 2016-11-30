@@ -3,12 +3,29 @@
 #include "State.h"
 #include "Background.h"
 #include "Imagem.h"
-#include "Mateus.h"
+#include "playAPCBase.h"
+#include <windows.h>
+#include <mmsystem.h>
 
 class State_op : public State{
     private:
+
+        enum{
+            CENA_1,
+            CENA_2,
+            CENA_3,
+            NO_CHANGE
+        };
+
         Background *instancebg;
         Imagem *instanceimg;
+
+        int dialog1,dialog2;
+        int grupoTelaInicial,grupoTelaPorco,grupoTelaOvelha,grupoTelaCitizen;
+        Ponto pPrincipal;
+        int cena, cenaant;
+
+        milliseconds tic;
     public:
         void load(tipoGame stack = GAME_NO_CHANGE);
         void unload();

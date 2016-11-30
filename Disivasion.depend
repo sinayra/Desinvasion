@@ -88,22 +88,24 @@
 	"State_end.h"
 	"Input.h"
 
-1480105070 d:\github\disinvasion\include\state_op.h
+1480535438 d:\github\disinvasion\include\state_op.h
 	"State.h"
 	"Background.h"
 	"Imagem.h"
-	"Mateus.h"
+	"playAPCBase.h"
+	<windows.h>
+	<mmsystem.h>
 
 1480097363 d:\github\disinvasion\include\state.h
 	<iostream>
 	"playAPCBase.h"
 	"Input.h"
 
-1480453649 d:\github\disinvasion\include\playapcbase.h
+1480460984 d:\github\disinvasion\include\playapcbase.h
 	<playAPC/playapc.h>
 	<chrono>
 
-1480453341 d:\github\disinvasion\include\state_play.h
+1480535068 d:\github\disinvasion\include\state_play.h
 	"State.h"
 	"Background.h"
 	"Imagem.h"
@@ -112,48 +114,51 @@
 	<vector>
 	<stdlib.h>
 
-1480105705 d:\github\disinvasion\include\state_end.h
+1480536185 d:\github\disinvasion\include\state_end.h
 	"State.h"
 	"Background.h"
 	"Imagem.h"
+	"playAPCBase.h"
+	<windows.h>
+	<mmsystem.h>
 
-1480453615 source:d:\github\disinvasion\src\mateus.cpp
+1480536185 source:d:\github\disinvasion\src\mateus.cpp
 	"../include/Mateus.h"
 
-1480452765 d:\github\disinvasion\include\mateus.h
+1480460984 d:\github\disinvasion\include\mateus.h
 	"Input.h"
 	"Imagem.h"
 	"playAPCBase.h"
 	<chrono>
 
-1480453615 source:d:\github\disinvasion\src\ovelha.cpp
+1480536321 source:d:\github\disinvasion\src\ovelha.cpp
 	"../include/Ovelha.h"
 
-1480453615 d:\github\disinvasion\include\ovelha.h
+1480460984 d:\github\disinvasion\include\ovelha.h
 	"playAPCBase.h"
 	"Imagem.h"
 	<playAPC/playapc.h>
 	<iostream>
 
-1480453615 source:d:\github\disinvasion\src\playapcbase.cpp
+1480460984 source:d:\github\disinvasion\src\playapcbase.cpp
 	"../include/playAPCBase.h"
 
-1480105675 source:d:\github\disinvasion\src\state_end.cpp
+1480536185 source:d:\github\disinvasion\src\state_end.cpp
 	"../include/State_end.h"
 
 1480368500 source:d:\github\disinvasion\src\state_manager.cpp
 	"State_manager.h"
 
-1480105070 source:d:\github\disinvasion\src\state_op.cpp
+1480535297 source:d:\github\disinvasion\src\state_op.cpp
 	"../include/State_op.h"
 
-1480453341 source:d:\github\disinvasion\src\state_play.cpp
+1480536321 source:d:\github\disinvasion\src\state_play.cpp
 	"../include/State_play.h"
 
-1480368500 d:\github\disinvasion\include\imagem.h
+1480536185 d:\github\disinvasion\include\imagem.h
 	<playAPC/playapc.h>
 
-1480368500 source:d:\github\disinvasion\src\imagem.cpp
+1480536185 source:d:\github\disinvasion\src\imagem.cpp
 	"../include/Imagem.h"
 
 1480368086 source:d:\github\disinvasion\src\tiro.cpp
