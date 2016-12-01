@@ -8,9 +8,10 @@ void State_play::load(tipoGame stack){
     float cellWidth = 2 * WIDTH/MAP_X_DIM;
     float cellHeight = 2 * HEIGHT/MAP_Y_DIM;
     int img;
-    int velocidade = 1000;
 
     cout << "Play" << endl;
+
+    this->dificuldade = 3000;
 
     p.y = HEIGHT - cellHeight;
     for(int i = 0; i < MAP_X_DIM; i++){
@@ -60,14 +61,18 @@ void State_play::load(tipoGame stack){
     p = this->mapaVisu[MAP_X_DIM - 1][MAP_Y_DIM/2];
 
     this->mateus = new Mateus(p.x, p.y, cellWidth, cellHeight, MAP_X_DIM - 1, MAP_Y_DIM/2);
+    this->tic = (milliseconds*) malloc(sizeof(milliseconds) * MAP_Y_DIM);
 
     for(int i = 0; i < MAP_Y_DIM; i++){
         this->ovelhas.push_back(new Ovelha(this->mapaVisu[0][i].x + 3, this->mapaVisu[0][0].y, (cellWidth) * 0.75, (cellHeight + 10) * 0.75, 0, i));
-        this->mapaLogico[0][i] = OVELHA;
-        this->ovelhas[i]->setVel(velocidade);
+        this->ovelhas[i]->setEstado(Ovelha::MORTA);
 
-        velocidade -= 100;
+        this->tiros.push_back(new Tiro(this->mapaVisu[MAP_X_DIM - 3][i].x, this->mapaVisu[MAP_X_DIM - 3][i].y, cellWidth, cellHeight, i, MAP_X_DIM - 3));
+
+        this->tic[i] = playAPCBase::tempo();
     }
+
+    this->timer = playAPCBase::tempo();
 }
 
 void State_play::unload(){
@@ -76,61 +81,130 @@ void State_play::unload(){
     for(int i = 0; i < MAP_Y_DIM; i++){
         delete(this->ovelhas[i]);
     }
+
+    free(this->tic);
 }
 
 
 void State_play::checkCollision(){
-
-}
-
-tipoGame State_play::update(){
-    int j;
-
-    /***********************
-    ** Updates do Mateus  **
-    ************************/
-    mateus->update(0);
-    j = mateus->getCoordj();
-
-    //Verifica se passou dos limites do mapa
-    if(j < 0)
-        mateus->setCoordj(++j);
-    else if(j > MAP_Y_DIM - 1)
-        mateus->setCoordj(--j);
-
-    if(mateus->getAtirou()){
-        if(mateus->getCombo()) //é o da mão esquerda
-            j++;
-    }
-
-    mateus->setPosicao(mapaVisu[MAP_X_DIM - 1][j].x); //Atualiza posição do Mateus
-
-    /***********************
-    ** Updates das Ovelhas  **
-    ************************/
-
     for(int i = 0; i < MAP_Y_DIM; i++){
-        if(!this->ovelhas[i]->getAtingiu()){
+        if(this->ovelhas[i]->isViva() && !this->ovelhas[i]->getAtingiu()){
 
             int coordi, coordj;
 
             coordi = this->ovelhas[i]->getCoordi();
             coordj = this->ovelhas[i]->getCoordj();
 
-            this->mapaLogico[coordi][coordj] = VAZIO;
+            this->ovelhas[i]->setPosicao(mapaVisu[coordi][coordj].y);
 
-            this->ovelhas[i]->update();
-
-            coordi = this->ovelhas[i]->getCoordi();
-
-            if(this->mapaLogico[coordi][coordj] != ICC){
-                this->ovelhas[i]->setPosicao(mapaVisu[coordi][coordj].y);
+            if(this->mapaLogico[coordi][coordj] == VAZIO){
                 this->mapaLogico[coordi][coordj] = OVELHA;
             }
-            else{
+            else if(this->mapaLogico[coordi][coordj] == TIRO){
+                this->ovelhas[i]->setEstado(Ovelha::MORTA);
+                this->tiros[i]->cessa();
+                this->mapaLogico[coordi][coordj] = VAZIO;
+
+                this->tic[i] = playAPCBase::tempo();
+            }
+            else if(this->mapaLogico[coordi][coordj] == ICC){
                 this->ovelhas[i]->setAtingiu(true);
+                this->ovelhas[i]->setEstado(Ovelha::INVADIU);
             }
         }
+    }
+}
+
+void State_play::updateMateus(int ovelhas){
+    int j;
+
+    this->mateus->update(0);
+    j = this->mateus->getCoordj();
+
+    //Verifica se passou dos limites do mapa
+    if(j < 0)
+        this->mateus->setCoordj(++j);
+    else if(j > MAP_Y_DIM - 1)
+        this->mateus->setCoordj(--j);
+
+    if(this->mateus->getAtirou()){
+        if(this->mateus->getCombo()) //é o da mão esquerda
+            j++;
+
+        if(this->mateus->getEspaco())
+            this->tiros[this->mateus->getCoordj()]->atira();
+    }
+
+    mateus->setPosicao(mapaVisu[MAP_X_DIM - 1][j].x); //Atualiza posição do Mateus
+
+    for(int i = 0; i < MAP_Y_DIM; i++){
+        if(this->tiros[i]->getAtirou()){
+            int linha, coluna;
+
+            coluna = this->tiros[i]->getCoordi();
+            linha = this->tiros[i]->getCoordj();
+
+            if(this->mapaLogico[linha][coluna] != ICC)
+                this->mapaLogico[linha][coluna] = VAZIO;
+
+            this->tiros[i]->update();
+            coluna = this->tiros[i]->getCoordi();
+            linha = this->tiros[i]->getCoordj();
+
+            if(linha < 0)
+                this->tiros[i]->cessa();
+            else{
+                this->tiros[i]->setPosicao(mapaVisu[linha][coluna].y);
+
+                if(this->mapaLogico[linha][coluna] != ICC)
+                    this->mapaLogico[linha][coluna] = TIRO;
+            }
+        }
+    }
+}
+
+int State_play::updateOvelhas(){
+
+    for(int i = 0; i < MAP_Y_DIM; i++){
+        if(this->ovelhas[i]->isViva()){
+            if(!this->ovelhas[i]->getAtingiu()){
+
+                int coordi, coordj;
+
+                coordi = this->ovelhas[i]->getCoordi();
+                coordj = this->ovelhas[i]->getCoordj();
+
+                this->mapaLogico[coordi][coordj] = VAZIO;
+
+                this->ovelhas[i]->update();
+            }
+        }
+        else{
+            int tempo = 1000 + rand() % 10000;
+
+            if(playAPCBase::duracao(this->tic[i], tempo)){
+                this->ovelhas[i]->setEstado(Ovelha::VIVA);
+                this->ovelhas[i]->setCoordi(0);
+                this->mapaLogico[0][i] = OVELHA;
+                this->ovelhas[i]->setVel(dificuldade);
+            }
+        }
+    }
+
+    return 0;
+}
+
+tipoGame State_play::update(){
+    int ovelhas;
+
+    ovelhas = this->updateOvelhas();
+    this->updateMateus(ovelhas);
+
+    this->checkCollision();
+
+    if(playAPCBase::duracao(this->timer, 3000)){
+        this->dificuldade *= 0.75;
+        this->timer = playAPCBase::tempo();
     }
 
     if(ApertouTecla('W'))

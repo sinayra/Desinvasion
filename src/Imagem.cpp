@@ -16,6 +16,7 @@ Imagem::Imagem(){
     bg_end_lose = AbreImagem("resources/PNG/Tela_final_perde.png");
     bg_end_win = AbreImagem("resources/PNG/Tela_final.png");
     ovelha = AbreImagem("resources/PNG/ovelha.png");
+    invadiu = AbreImagem("resources/PNG/trovelha.png");
     jogador[0] = AbreImagem("resources/PNG/Estudante_frame1_cartoon.png");
     jogador[1] = AbreImagem("resources/PNG/Estudante_frame2_catoon.png");
     livro = AbreImagem("resources/PNG/livro.png");
@@ -76,10 +77,16 @@ int Imagem::getImg(tipoImg img){
             return dialogo4;
         break;
 
-        default:
+        case Imagem::INVADIU:
+            return invadiu;
+        break;
+
+        case Imagem::NADA:
             return nada;
         break;
     }
+
+    return nada;
 }
 
 Imagem::~Imagem()

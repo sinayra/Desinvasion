@@ -18,6 +18,10 @@ Mateus::Mateus(float x, float y, float tamw, float tamh, int i, int j): coordx(x
     AssociaImagem(img, RETANGULO, this->mateusq); /**/
 }
 
+bool Mateus::getEspaco(){
+    return this->espaco;
+}
+
 bool Mateus::getAtirou(){
     return this->ataque;
 }
@@ -62,6 +66,7 @@ void Mateus::update(int ovelhas_mortas){
     }
 
     if(ApertouTecla(TECLA_ESPACO)){
+        this->espaco = true;
         this->tic = playAPCBase::tempo();
 
         instanceimg = Imagem::getInstance();
@@ -82,6 +87,9 @@ void Mateus::update(int ovelhas_mortas){
         else{
             Redimensiona(1, 2, mateusg); /**/
         }
+    }
+    else{
+        this->espaco = false;
     }
 
     if(this->ataque && playAPCBase::duracao(this->tic, 500) ){

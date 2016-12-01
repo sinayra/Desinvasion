@@ -105,12 +105,14 @@
 	<playAPC/playapc.h>
 	<chrono>
 
-1480535068 d:\github\disinvasion\include\state_play.h
+1480630130 d:\github\disinvasion\include\state_play.h
 	"State.h"
 	"Background.h"
 	"Imagem.h"
 	"Mateus.h"
 	"Ovelha.h"
+	"Tiro.h"
+	"playAPCBase.h"
 	<vector>
 	<stdlib.h>
 
@@ -122,19 +124,19 @@
 	<windows.h>
 	<mmsystem.h>
 
-1480536185 source:d:\github\disinvasion\src\mateus.cpp
+1480627610 source:d:\github\disinvasion\src\mateus.cpp
 	"../include/Mateus.h"
 
-1480460984 d:\github\disinvasion\include\mateus.h
+1480627610 d:\github\disinvasion\include\mateus.h
 	"Input.h"
 	"Imagem.h"
 	"playAPCBase.h"
 	<chrono>
 
-1480536321 source:d:\github\disinvasion\src\ovelha.cpp
+1480628595 source:d:\github\disinvasion\src\ovelha.cpp
 	"../include/Ovelha.h"
 
-1480460984 d:\github\disinvasion\include\ovelha.h
+1480539171 d:\github\disinvasion\include\ovelha.h
 	"playAPCBase.h"
 	"Imagem.h"
 	<playAPC/playapc.h>
@@ -143,28 +145,28 @@
 1480460984 source:d:\github\disinvasion\src\playapcbase.cpp
 	"../include/playAPCBase.h"
 
-1480536185 source:d:\github\disinvasion\src\state_end.cpp
+1480536580 source:d:\github\disinvasion\src\state_end.cpp
 	"../include/State_end.h"
 
-1480368500 source:d:\github\disinvasion\src\state_manager.cpp
+1480625289 source:d:\github\disinvasion\src\state_manager.cpp
 	"State_manager.h"
 
 1480535297 source:d:\github\disinvasion\src\state_op.cpp
 	"../include/State_op.h"
 
-1480536321 source:d:\github\disinvasion\src\state_play.cpp
+1480630581 source:d:\github\disinvasion\src\state_play.cpp
 	"../include/State_play.h"
 
-1480536185 d:\github\disinvasion\include\imagem.h
+1480538580 d:\github\disinvasion\include\imagem.h
 	<playAPC/playapc.h>
 
-1480536185 source:d:\github\disinvasion\src\imagem.cpp
+1480539955 source:d:\github\disinvasion\src\imagem.cpp
 	"../include/Imagem.h"
 
-1480368086 source:d:\github\disinvasion\src\tiro.cpp
+1480627208 source:d:\github\disinvasion\src\tiro.cpp
 	"../include/Tiro.h"
 
-1480367764 d:\github\disinvasion\include\tiro.h
+1480627182 d:\github\disinvasion\include\tiro.h
 	"Imagem.h"
 	"playAPCBase.h"
 	<stdlib.h>

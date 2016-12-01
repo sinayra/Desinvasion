@@ -19,6 +19,7 @@ class Imagem{
             DIALOGO1,
             DIALOGO2,
             DIALOGO4,
+            INVADIU,
             NADA
         }tipoImg;
 
@@ -29,5 +30,5 @@ class Imagem{
         ~Imagem();
         static Imagem *instance;
 
-        int jogador[2], ovelha, livro, bg_jogo, bg_inicio, bg_end_lose, bg_end_win, nada, cenario_dialogo, dialogo1, dialogo2, dialogo4;
+        int jogador[2], ovelha, livro, bg_jogo, bg_inicio, bg_end_lose, bg_end_win, nada, cenario_dialogo, dialogo1, dialogo2, dialogo4, invadiu;
 };

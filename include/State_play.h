@@ -5,6 +5,8 @@
 #include "Imagem.h"
 #include "Mateus.h"
 #include "Ovelha.h"
+#include "Tiro.h"
+#include "playAPCBase.h"
 #include <vector>
 #include <stdlib.h>
 
@@ -27,6 +29,12 @@ class State_play : public State{
         Imagem *instanceimg;
         Mateus *mateus;
         vector<Ovelha*> ovelhas;
+        vector<Tiro*> tiros;
+        milliseconds *tic, timer;
+        int dificuldade;
+
+        void updateMateus(int ovelhas);
+        int updateOvelhas();
 
     public:
         void load(tipoGame stack = GAME_NO_CHANGE);

@@ -9,6 +9,12 @@ using namespace std;
 
 class Ovelha{
     public:
+        typedef enum{
+            VIVA,
+            MORTA,
+            INVADIU
+        }tipoEstadoOvelha;
+
         Ovelha(float x, float y, float tamw, float tamh, int i, int j);
         virtual ~Ovelha();
 
@@ -25,13 +31,17 @@ class Ovelha{
         void setAtingiu(bool acao);
         bool getAtingiu();
 
+        void setEstado(tipoEstadoOvelha st);
+        bool isViva();
 
     private:
+
         bool atingiu;
-        int ovelha;
         int coordx, coordy, coordi, coordj;
         int ovelhaq, ovelhag;
         Imagem *instanceimg;
         int vel;
         milliseconds tic;
+
+        tipoEstadoOvelha st;
 };

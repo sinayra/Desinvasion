@@ -29,7 +29,7 @@ tipoGame State_end::update(){
         Desenha1Frame();
         PlaySound("resources/SOUND/game_over.wav", NULL, SND_FILENAME);
     }
-    else{
+    else if(this->cena == State_end::CENA_WIN){
         this->tic = playAPCBase::tempo();
         Desenha1Frame();
         PlaySound("resources/SOUND/judge.wav", NULL, SND_FILENAME);

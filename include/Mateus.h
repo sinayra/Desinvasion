@@ -17,6 +17,7 @@ class Mateus
 
         int getCombo();
         bool getAtirou();
+        bool getEspaco();
 
         int getCoordi();
         int getCoordj();
@@ -34,6 +35,7 @@ class Mateus
         int combo_ataque = 0;
         bool ataque = false;
         Imagem *instanceimg;
+        bool espaco;
 
         milliseconds tic;
 };

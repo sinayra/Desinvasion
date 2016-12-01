@@ -2,7 +2,6 @@
 
 Ovelha::Ovelha(float x, float y, float tamw, float tamh, int i, int j): coordx(x), coordy(y), coordi(i), coordj(j){
     Ponto p;
-    int img;
 
     p.x = this->coordx;
     p.y = this->coordy;
@@ -14,11 +13,35 @@ Ovelha::Ovelha(float x, float y, float tamw, float tamh, int i, int j): coordx(x
     Pintar(255, 255, 255);
 
     instanceimg = Imagem::getInstance();
-    img = instanceimg->getImg(Imagem::OVELHA);
-
-    AssociaImagem(img, RETANGULO, this->ovelhaq); /**/
 
     this->tic = playAPCBase::tempo();
+}
+
+bool Ovelha::isViva(){
+    if(this->st == Ovelha::MORTA)
+        return false;
+
+    return true;
+}
+
+void Ovelha::setEstado(tipoEstadoOvelha st){
+    int img;
+
+    this->st = st;
+
+    switch(this->st){
+        case Ovelha::VIVA:
+            img = instanceimg->getImg(Imagem::OVELHA);
+        break;
+        case Ovelha::MORTA:
+            img = instanceimg->getImg(Imagem::NADA);
+        break;
+        case Ovelha::INVADIU:
+            img = instanceimg->getImg(Imagem::INVADIU);
+        break;
+    }
+
+    AssociaImagem(img, RETANGULO, this->ovelhaq); /**/
 }
 
 int Ovelha::getCoordi(){
@@ -60,9 +83,11 @@ void Ovelha::setPosicao(int y){
 }
 
 void Ovelha::update(){
-    if(playAPCBase::duracao(this->tic, this->vel)){
-        this->coordi++;
-        this->tic = playAPCBase::tempo();
+    if(this->st == Ovelha::VIVA){
+        if(playAPCBase::duracao(this->tic, this->vel)){
+            this->coordi++;
+            this->tic = playAPCBase::tempo();
+        }
     }
 }
 
