@@ -1,4 +1,4 @@
-#include "State_manager.h"
+#include "../include/State_manager.h"
 
 State_manager::State_manager(){
     input = input->getInstance();

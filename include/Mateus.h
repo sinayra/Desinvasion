@@ -2,6 +2,7 @@
 
 #include "Input.h"
 #include "Imagem.h"
+#include "Sound.h"
 #include "playAPCBase.h"
 #include <chrono>
 
@@ -31,10 +32,11 @@ class Mateus
         int coordx, coordy;
         int coordi, coordj;
         int mateusq, mateusg;
-        int combo_ovelhas = 0;
-        int combo_ataque = 0;
-        bool ataque = false;
+        int combo_ovelhas;
+        int combo_ataque;
+        bool ataque;
         Imagem *instanceimg;
+        Sound *instancesnd;
         bool espaco;
 
         milliseconds tic;

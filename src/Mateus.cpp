@@ -4,6 +4,10 @@ Mateus::Mateus(float x, float y, float tamw, float tamh, int i, int j): coordx(x
     Ponto p;
     int img;
 
+    this->combo_ovelhas = 0;
+	this->combo_ataque = 0;
+	this->ataque = false;
+        
     p.x = this->coordx;
     p.y = this->coordy;
 
@@ -14,7 +18,9 @@ Mateus::Mateus(float x, float y, float tamw, float tamh, int i, int j): coordx(x
 
     instanceimg = Imagem::getInstance();
     img = instanceimg->getImg(Imagem::JOGADOR_STAND);
-
+    
+    instancesnd = Sound::getInstance();
+    
     AssociaImagem(img, RETANGULO, this->mateusq); /**/
 }
 
@@ -66,7 +72,12 @@ void Mateus::update(int ovelhas_mortas){
     }
 
     if(ApertouTecla(TECLA_ESPACO)){
-        this->espaco = true;
+		
+		if(!instancesnd->getIsPlaying())
+		{
+			instancesnd->play(5);
+        }
+		this->espaco = true;
         this->tic = playAPCBase::tempo();
 
         instanceimg = Imagem::getInstance();

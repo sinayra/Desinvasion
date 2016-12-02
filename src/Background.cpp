@@ -1,4 +1,4 @@
-#include "Background.h"
+#include "../include/Background.h"
 
 Background *Background::instance = NULL;
 

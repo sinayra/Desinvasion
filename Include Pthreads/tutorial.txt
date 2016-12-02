@@ -1,0 +1,12 @@
+linker:
+
+-lglut32 -lglu32 -lopengl32 -lwinmm -lgdi32 -lpthreadGC2
+
+
+
+arquivos para copiar para a pasta LIB
+- libgdi32.a
+- libglu32.a
+- libopengl32.a
+- libpthreadGC2.dll.a
+- libwinmm.a
