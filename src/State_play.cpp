@@ -73,32 +73,35 @@ void State_play::unload(){
 
 void State_play::checkCollision(){
     for(int i = 0; i < MAP_Y_DIM; i++){
-        if(this->ovelhas[i]->isViva() && !this->ovelhas[i]->getAtingiu()){
+        if(this->ovelhas[i]->isViva() && !this->ovelhas[i]->getInvadiu()){
             int coordi, coordj;
 
             coordi = this->ovelhas[i]->getCoordi();
             coordj = this->ovelhas[i]->getCoordj();
 
-            if(this->mapaLogico[coordi][coordj] == VAZIO){
-                this->ovelhas[i]->setEstado(Ovelha::VIVA);
+            if(this->mapaLogico[coordi][coordj] == VAZIO && this->ovelhas[i]->getVida() > 0){
+
+                if(this->ovelhas[i]->isLider())
+                    this->ovelhas[i]->setEstado(Ovelha::VIVA_LIDER);
+                else
+                    this->ovelhas[i]->setEstado(Ovelha::VIVA);
+
                 this->mapaLogico[coordi][coordj] = OVELHA;
             }
             else if(this->mapaLogico[coordi][coordj] == TIRO){
-                //this->ovelhas[i]->setEstado(Ovelha::DANO);
-                //this->mapaLogico[coordi][coordj] = OVELHA;
-                //this->ovelhas[i]->decrementaVida();
-
-
-                this->ovelhas[i]->setEstado(Ovelha::MORTA);
+                this->ovelhas[i]->setEstado(Ovelha::DANO);
+                this->ovelhas[i]->decrementaVida();
                 this->tiro->cessa();
-                this->mapaLogico[coordi][coordj] = VAZIO;
 
-                this->tic[i] = playAPCBase::tempo();
-
-
+                if(this->ovelhas[i]->getVida() == 0){
+                    this->mapaLogico[coordi][coordj] = VAZIO;
+                    this->tic[i] = playAPCBase::tempo();
+                }
+                else{
+                    this->mapaLogico[coordi][coordj] = OVELHA;
+                }
             }
             else if(this->mapaLogico[coordi][coordj] == ICC){
-                this->ovelhas[i]->setAtingiu(true);
                 this->ovelhas[i]->setEstado(Ovelha::INVADIU);
             }
         }
@@ -133,17 +136,12 @@ void State_play::updateMateus(int ovelhas){
         coluna = this->tiro->getCoordj();
         linha = this->tiro->getCoordi();
 
-        cout << "coluna: " << coluna << "\tlinha: " << linha << endl;
-        //getchar();
-
         if(this->mapaLogico[linha][coluna] != ICC)
             this->mapaLogico[linha][coluna] = VAZIO;
 
         this->tiro->update();
         coluna = this->tiro->getCoordj();
         linha = this->tiro->getCoordi();
-
-        cout << "coluna: " << coluna << "\tlinha: " << linha << endl;
 
         if(linha < 0)
             this->tiro->cessa();
@@ -176,22 +174,8 @@ int State_play::updateOvelhas(){
 
     for(int i = 0; i < MAP_Y_DIM; i++){
 
-        /*if(this->ovelhas[i]->getVida() == 0){
-            int coordi, coordj;
-
-            coordi = this->ovelhas[i]->getCoordi();
-            coordj = this->ovelhas[i]->getCoordj();
-
-            this->ovelhas[i]->setEstado(Ovelha::MORTA);
-            this->tiro->cessa();
-            this->mapaLogico[coordi][coordj] = VAZIO;
-
-            this->tic[i] = playAPCBase::tempo();
-
-        }*/
-
         if(this->ovelhas[i]->isViva()){
-            if(!this->ovelhas[i]->getAtingiu()){
+            if(!this->ovelhas[i]->getInvadiu()){
                 int coordi, coordj;
 
                 coordi = this->ovelhas[i]->getCoordi();
@@ -221,8 +205,16 @@ int State_play::updateOvelhas(){
             }
             else{
                 if(playAPCBase::duracao(this->tic[i], r)){
-                    this->ovelhas[i]->setEstado(Ovelha::VIVA);
-                    this->ovelhas[i]->ressucita(1);
+                    int sorteia = (int)(random_uint(100));
+
+                    if(sorteia > 75){
+                        this->ovelhas[i]->setEstado(Ovelha::VIVA_LIDER);
+                        this->ovelhas[i]->ressucita(2);
+                    }
+                    else{
+                        this->ovelhas[i]->setEstado(Ovelha::VIVA);
+                        this->ovelhas[i]->ressucita(1);
+                    }
                     this->ovelhas[i]->setCoordi(0);
                     this->mapaLogico[0][i] = OVELHA;
 

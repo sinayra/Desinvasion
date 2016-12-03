@@ -5,7 +5,7 @@ Ovelha::Ovelha(float x, float y, float tamw, float tamh, int i, int j): coordx(x
 
     p.x = this->coordx;
     p.y = this->coordy;
-    this->atingiu = false;
+    this->invadiu = false;
 
     this->ovelhag = CriaGrupo(); /**/
 
@@ -16,6 +16,7 @@ Ovelha::Ovelha(float x, float y, float tamw, float tamh, int i, int j): coordx(x
 
     this->tic = playAPCBase::tempo();
     this->respawn = -1;
+    this->vida = 0;
 }
 
 bool Ovelha::isViva(){
@@ -33,20 +34,29 @@ void Ovelha::setEstado(tipoEstadoOvelha st){
     switch(this->st){
         case Ovelha::VIVA:
             img = instanceimg->getImg(Imagem::OVELHA);
+            this->lider = false;
         break;
         case Ovelha::VIVA_LIDER:
-            img = instanceimg->getImg(Imagem::OVELHA);
+            img = instanceimg->getImg(Imagem::OVELHA_LIDER);
+            this->lider = true;
         break;
         case Ovelha::DANO:
-            img = instanceimg->getImg(Imagem::OVELHA);
+            if(this->lider)
+                img = instanceimg->getImg(Imagem::OVELHA_LIDER_DANO);
+            else
+                img = instanceimg->getImg(Imagem::OVELHA_DANO);
+
+            this->tic = playAPCBase::tempo();
         break;
         case Ovelha::MORTA:
             img = instanceimg->getImg(Imagem::NADA);
             this->respawn = 0;
+            this->coordi = 0;
             this->setPosicao(this->coordy);
         break;
         case Ovelha::INVADIU:
             img = instanceimg->getImg(Imagem::INVADIU);
+            this->invadiu = true;
         break;
     }
 
@@ -65,8 +75,8 @@ int Ovelha::getCoordj(){
     return this->coordj;
 }
 
-bool Ovelha::getAtingiu(){
-    return this->atingiu;
+bool Ovelha::getInvadiu(){
+    return this->invadiu;
 }
 
 int Ovelha::getRespawn(){
@@ -89,8 +99,8 @@ void Ovelha::setCoordj(int j){
     this->coordj = j;
 }
 
-void Ovelha::setAtingiu(bool acao){
-    this->atingiu = acao;
+void Ovelha::setInvadiu(bool acao){
+    this->invadiu = acao;
 }
 
 void Ovelha::setRespawn(int r){
@@ -103,6 +113,10 @@ void Ovelha::setVel(int vel){
 
 int Ovelha::getVel(){
     return this->vel;
+}
+
+bool Ovelha::isLider(){
+    return this->lider;
 }
 
 void Ovelha::ressucita(int vida){
@@ -122,11 +136,23 @@ void Ovelha::setPosicao(int y){
 
 void Ovelha::update(){
 
-    if(this->st == Ovelha::VIVA){
+    if(this->st == Ovelha::VIVA || this->st == Ovelha::VIVA_LIDER){
         if(playAPCBase::duracao(this->tic, this->vel)){
             this->coordi++;
             this->tic = playAPCBase::tempo();
         }
+    }
+    else if(this->st == Ovelha::DANO){
+
+        if(playAPCBase::duracao(this->tic, 1000)){
+            if(this->vida == 0)
+                this->setEstado(Ovelha::MORTA);
+            else if(this->lider)
+                this->st = Ovelha::VIVA_LIDER;
+
+            this->tic = playAPCBase::tempo();
+        }
+
     }
 }
 

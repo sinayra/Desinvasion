@@ -15,7 +15,10 @@ Imagem::Imagem(){
     bg_inicio = AbreImagem("resources/PNG/Tela_Inicial.png");
     bg_end_lose = AbreImagem("resources/PNG/Tela_final_perde.png");
     bg_end_win = AbreImagem("resources/PNG/Tela_final.png");
-    ovelha = AbreImagem("resources/PNG/ovelha.png");
+    ovelha[0] = AbreImagem("resources/PNG/ovelha.png");
+    ovelha[1] = AbreImagem("resources/PNG/ovelha_susto.png");
+    ovelha[2] = AbreImagem("resources/PNG/ovelha_plus.png");
+    ovelha[3] = AbreImagem("resources/PNG/ovelha_plus_susto.png");
     invadiu = AbreImagem("resources/PNG/trovelha.png");
     jogador[0] = AbreImagem("resources/PNG/Estudante_frame1_cartoon.png");
     jogador[1] = AbreImagem("resources/PNG/Estudante_frame2_catoon.png");
@@ -38,7 +41,19 @@ int Imagem::getImg(tipoImg img){
         break;
 
         case Imagem::OVELHA:
-            return ovelha;
+            return ovelha[0];
+        break;
+
+        case Imagem::OVELHA_DANO:
+            return ovelha[1];
+        break;
+
+        case Imagem::OVELHA_LIDER:
+            return ovelha[2];
+        break;
+
+        case Imagem::OVELHA_LIDER_DANO:
+            return ovelha[3];
         break;
 
         case Imagem::BG_INICIO:

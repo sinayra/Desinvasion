@@ -12,8 +12,8 @@ Sound* Sound::getInstance(){
 
 Sound::Sound(){
 
-   	//pthread_join(threadSong,&sdn); 
-	
+   	//pthread_join(threadSong,&sdn);
+
 }
 
 bool Sound::getIsPlaying()
@@ -37,12 +37,12 @@ void Sound::setId(int s)
 void Sound::play(int n)
 {
 	pthread_t threadSong;
-	void *sdn;
+	//void *sdn;
 	this->id = n;
 	//void *aux;
 	//aux = &instance->tocaSom;
     pthread_create(&threadSong, NULL, &Sound::tocaSom_helper, NULL);
-    
+
 }
 
 /*
@@ -52,21 +52,21 @@ void *Sound::tocaSom(void*){
 		PlaySound("resources/SOUND/06_shoot.wav", NULL, SND_FILENAME);
 	}
 	if(this->num== 2){
-		PlaySound("risada.wav", NULL, SND_FILENAME);	
+		PlaySound("risada.wav", NULL, SND_FILENAME);
 	}
 	if(this->num== 3){
-		PlaySound("trovao.wav", NULL, SND_FILENAME);	
+		PlaySound("trovao.wav", NULL, SND_FILENAME);
 	}
-	
+
 	return NULL;
 }
 */
 
 void *Sound::tocaSom(){
 	srand(time(NULL));
-	
-	this->isPlaying=true;
-	
+
+	instance->setIsPlaying(true);
+
 	if(instance->getId() == 1){
 		PlaySound("resources/SOUND/01_the_disinvasion_game.wav", NULL, SND_FILENAME);
 	}
@@ -95,7 +95,7 @@ void *Sound::tocaSom(){
 		{
 			PlaySound("resources/SOUND/10_toma_livro.wav", NULL, SND_FILENAME);
 		}
-		
+
 	}
 	/*
 	if(id == 6){
@@ -117,6 +117,6 @@ void *Sound::tocaSom(){
 		PlaySound("resources/SOUND/11_meteoro.wav", NULL, SND_FILENAME);
 	}
 	*/
-	this->isPlaying=false;
+	instance->setIsPlaying(false);
 	return NULL;
 }

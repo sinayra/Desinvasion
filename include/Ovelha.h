@@ -37,15 +37,16 @@ class Ovelha{
         void decrementaVida();
         void ressucita(int vida);
 
-        void setAtingiu(bool acao);
-        bool getAtingiu();
+        void setInvadiu(bool acao);
+        bool getInvadiu();
 
         void setEstado(tipoEstadoOvelha st);
         bool isViva();
+        bool isLider();
 
     private:
 
-        bool atingiu;
+        bool invadiu, lider;
         int coordx, coordy, coordi, coordj;
         int ovelhaq, ovelhag;
         Imagem *instanceimg;

@@ -65,8 +65,8 @@
 1480050812 c:\users\nayra\documents\github\disinvasion\include\input.h
 	<playAPC/playapc.h>
 
-1480100877 source:d:\github\disinvasion\src\background.cpp
-	"Background.h"
+1480789660 source:d:\github\disinvasion\src\background.cpp
+	"../include/Background.h"
 
 1480100897 d:\github\disinvasion\include\background.h
 	<playAPC/playapc.h>
@@ -105,7 +105,7 @@
 	<playAPC/playapc.h>
 	<chrono>
 
-1480690381 d:\github\disinvasion\include\state_play.h
+1480789661 d:\github\disinvasion\include\state_play.h
 	"State.h"
 	"Background.h"
 	"Imagem.h"
@@ -124,20 +124,21 @@
 	<windows.h>
 	<mmsystem.h>
 
-1480627610 source:d:\github\disinvasion\src\mateus.cpp
+1480789660 source:d:\github\disinvasion\src\mateus.cpp
 	"../include/Mateus.h"
 
-1480688747 d:\github\disinvasion\include\mateus.h
+1480789661 d:\github\disinvasion\include\mateus.h
 	"Input.h"
 	"Imagem.h"
+	"Sound.h"
 	"playAPCBase.h"
 	<chrono>
 	<openssl/rand.h>
 
-1480789061 source:d:\github\disinvasion\src\ovelha.cpp
+1480793090 source:d:\github\disinvasion\src\ovelha.cpp
 	"../include/Ovelha.h"
 
-1480788307 d:\github\disinvasion\include\ovelha.h
+1480792878 d:\github\disinvasion\include\ovelha.h
 	"playAPCBase.h"
 	"Imagem.h"
 	<playAPC/playapc.h>
@@ -149,26 +150,36 @@
 1480536580 source:d:\github\disinvasion\src\state_end.cpp
 	"../include/State_end.h"
 
-1480625289 source:d:\github\disinvasion\src\state_manager.cpp
-	"State_manager.h"
+1480789660 source:d:\github\disinvasion\src\state_manager.cpp
+	"../include/State_manager.h"
 
 1480535297 source:d:\github\disinvasion\src\state_op.cpp
 	"../include/State_op.h"
 
-1480788885 source:d:\github\disinvasion\src\state_play.cpp
+1480793290 source:d:\github\disinvasion\src\state_play.cpp
 	"../include/State_play.h"
 
-1480538580 d:\github\disinvasion\include\imagem.h
+1480791143 d:\github\disinvasion\include\imagem.h
 	<playAPC/playapc.h>
 
-1480539955 source:d:\github\disinvasion\src\imagem.cpp
+1480791143 source:d:\github\disinvasion\src\imagem.cpp
 	"../include/Imagem.h"
 
-1480691916 source:d:\github\disinvasion\src\tiro.cpp
+1480789661 source:d:\github\disinvasion\src\tiro.cpp
 	"../include/Tiro.h"
 
-1480691237 d:\github\disinvasion\include\tiro.h
+1480789661 d:\github\disinvasion\include\tiro.h
 	"Imagem.h"
 	"playAPCBase.h"
 	<iostream>
+
+1480790112 d:\github\disinvasion\include\sound.h
+	<windows.h>
+	<pthread.h>
+	<stdlib.h>
+	<time.h>
+
+1480790170 source:d:\github\disinvasion\src\sound.cpp
+	"../include/Sound.h"
+	<stdio.h>
 

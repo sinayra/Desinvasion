@@ -10,6 +10,9 @@ class Imagem{
             JOGADOR_STAND,
             JOGADOR_ATTACK,
             OVELHA,
+            OVELHA_DANO,
+            OVELHA_LIDER,
+            OVELHA_LIDER_DANO,
             LIVRO,
             BG_INICIO,
             BG_JOGO,
@@ -30,5 +33,5 @@ class Imagem{
         ~Imagem();
         static Imagem *instance;
 
-        int jogador[2], ovelha, livro, bg_jogo, bg_inicio, bg_end_lose, bg_end_win, nada, cenario_dialogo, dialogo1, dialogo2, dialogo4, invadiu;
+        int jogador[2], ovelha[4], livro, bg_jogo, bg_inicio, bg_end_lose, bg_end_win, nada, cenario_dialogo, dialogo1, dialogo2, dialogo4, invadiu;
 };
