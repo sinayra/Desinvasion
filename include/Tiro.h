@@ -2,7 +2,7 @@
 
 #include "Imagem.h"
 #include "playAPCBase.h"
-#include <stdlib.h>
+#include <iostream>
 
 class Tiro
 {
@@ -18,16 +18,16 @@ class Tiro
 
         bool getAtirou();
 
-        void atira();
+        void atira(int i, int j);
         void cessa();
         void update();
 
-        void setPosicao(int y);
+        void setPosicao(int x, int y);
 
     private:
         bool atirou;
         int coordx, coordy, coordi, coordj, coordi_original, coordj_original;
-        int tiroq, tirog;
+        int tiroq, tirog, rot;
         Imagem *instanceimg;
         vector<Tiro*> tiro;
 

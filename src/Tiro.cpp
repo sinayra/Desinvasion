@@ -4,8 +4,8 @@ Tiro::Tiro(float x, float y, float tamw, float tamh, int i, int j): coordx(x), c
     int img;
     Ponto p;
 
-    p.x = this->coordx;
-    p.y = this->coordy;
+    p.x = -tamw/2;
+    p.y = -tamw/2;
 
     this->atirou = false;
     this->tirog = CriaGrupo(); /**/
@@ -16,19 +16,27 @@ Tiro::Tiro(float x, float y, float tamw, float tamh, int i, int j): coordx(x), c
     this->tiroq = CriaRetangulo(tamw, tamh, p); /**/
     Pintar(255, 255, 255);
 
+    p.x = this->coordx;
+    p.y = this->coordy;
+
     instanceimg = Imagem::getInstance();
 
     img = instanceimg->getImg(Imagem::NADA);
 
     AssociaImagem(img, RETANGULO, this->tirog); /**/
 
+    this->rot = 0;
+
 }
 
-void Tiro::setPosicao(int y){
+void Tiro::setPosicao(int x, int y){
     Ponto p;
 
-    p.x = this->coordx;
+    p.x = x;
     p.y = y;
+
+    std::cout << "p.x: " << p.x << endl;
+    //getchar();
 
     Move(p, this->tirog);
 
@@ -54,12 +62,14 @@ void Tiro::setCoordj(int j){
     this->coordj = j;
 }
 
-void Tiro::atira(){
+void Tiro::atira(int i, int j){
     int img;
 
     instanceimg = Imagem::getInstance();
     img = instanceimg->getImg(Imagem::LIVRO);
 
+    this->coordi = i;
+    this->coordj = j;
     this->atirou = true;
     this->tic = playAPCBase::tempo();
 
@@ -74,15 +84,19 @@ void Tiro::cessa(){
 
     this->atirou = false;
 
-    this->coordi = this->coordi_original;
     this->coordj = this->coordj_original;
+
+    this->rot = 0;
 }
 
 
 void Tiro::update(){
 
+    Gira(this->rot, this->tirog);
+    this->rot += 30;
+
     if(playAPCBase::duracao(this->tic, 100)){
-        this->coordj--;
+        this->coordi--;
         this->tic = playAPCBase::tempo();
     }
 }

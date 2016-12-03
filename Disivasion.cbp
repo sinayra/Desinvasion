@@ -19,6 +19,8 @@
 					<Add option="-glfw" />
 					<Add option="-lwinmm" />
 					<Add option="-lplayAPC" />
+					<Add library="../../CodeBlocks/MinGW/lib/libcrypto-1_1.a" />
+					<Add library="../../CodeBlocks/MinGW/lib/libcrypt32.a" />
 				</Linker>
 			</Target>
 			<Target title="Release">

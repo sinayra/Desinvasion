@@ -11,7 +11,9 @@ class Ovelha{
     public:
         typedef enum{
             VIVA,
+            VIVA_LIDER,
             MORTA,
+            DANO,
             INVADIU
         }tipoEstadoOvelha;
 
@@ -23,10 +25,17 @@ class Ovelha{
 
         int getCoordi();
         int getCoordj();
+        int getVel();
+        int getRespawn();
+        int getVida();
 
         void setCoordi(int i);
         void setCoordj(int j);
         void setVel(int v);
+        void setRespawn(int v);
+        void setVida(int vida);
+        void decrementaVida();
+        void ressucita(int vida);
 
         void setAtingiu(bool acao);
         bool getAtingiu();
@@ -40,7 +49,8 @@ class Ovelha{
         int coordx, coordy, coordi, coordj;
         int ovelhaq, ovelhag;
         Imagem *instanceimg;
-        int vel;
+        int vel, respawn, vida;
+        //int vida;
         milliseconds tic;
 
         tipoEstadoOvelha st;

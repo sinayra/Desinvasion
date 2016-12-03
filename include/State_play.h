@@ -29,12 +29,14 @@ class State_play : public State{
         Imagem *instanceimg;
         Mateus *mateus;
         vector<Ovelha*> ovelhas;
-        vector<Tiro*> tiros;
+        Tiro *tiro;
         milliseconds *tic, timer;
         int dificuldade;
 
         void updateMateus(int ovelhas);
         int updateOvelhas();
+
+        unsigned int random_uint(unsigned int limit);
 
     public:
         void load(tipoGame stack = GAME_NO_CHANGE);

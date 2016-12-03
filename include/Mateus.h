@@ -5,6 +5,7 @@
 #include "Sound.h"
 #include "playAPCBase.h"
 #include <chrono>
+#include <openssl/rand.h>
 
 using namespace std::chrono;
 
