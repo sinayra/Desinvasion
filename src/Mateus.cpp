@@ -11,10 +11,12 @@ Mateus::Mateus(float x, float y, float tamw, float tamh, int i, int j): coordx(x
     p.x = this->coordx;
     p.y = this->coordy;
 
+    this->cor_especial = 255;
+
     this->mateusg = CriaGrupo(); /**/
 
     this->mateusq = CriaRetangulo(tamw, tamh, p); /**/
-    Pintar(255, 255, 255);
+    Pintar(255, 255, this->cor_especial, RETANGULO, this->mateusq);
 
     instanceimg = Imagem::getInstance();
     img = instanceimg->getImg(Imagem::JOGADOR_STAND);
@@ -43,6 +45,7 @@ bool Mateus::getEspecial(){
 void Mateus::resetEspecial(){
     this->especial = false;
     this->combo_ovelhas = 0;
+    this->cor_especial = 255;
 }
 
 int Mateus::getCoordi(){
@@ -129,6 +132,15 @@ void Mateus::update(int ovelhas_mortas){
         this->especial = true;
     else
         this->especial = false;
+
+    if(this->especial){
+        if(this->cor_especial > 0)
+            this->cor_especial -= 50;
+        else
+            this->cor_especial = 255;
+
+        Pintar(255, 255, this->cor_especial, RETANGULO, this->mateusq);
+    }
 }
 
 Mateus::~Mateus(){

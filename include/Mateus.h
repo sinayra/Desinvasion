@@ -43,5 +43,7 @@ class Mateus
         Sound *instancesnd;
         bool espaco;
 
+        int cor_especial;
+
         milliseconds tic;
 };

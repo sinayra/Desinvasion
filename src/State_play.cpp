@@ -62,6 +62,9 @@ void State_play::load(tipoGame stack){
         this->tic[i] = playAPCBase::tempo();
     }
 
+    this->progresso = new Progresso();
+    this->vitoria = 30;
+
     this->timer = playAPCBase::tempo();
 }
 
@@ -72,6 +75,7 @@ void State_play::unload(){
         delete(this->ovelhas[i]);
     }
 
+    delete(progresso);
     free(this->tic);
 }
 
@@ -103,6 +107,8 @@ int State_play::checkCollision(){
                     ovelhas_mortas++;
                     this->mapaLogico[coordi][coordj] = VAZIO;
                     this->tic[i] = playAPCBase::tempo();
+
+                    this->vitoria--;
                 }
                 else{
                     this->mapaLogico[coordi][coordj] = OVELHA;
@@ -121,6 +127,7 @@ int State_play::checkCollision(){
                     this->constituicao[2]->cessa();
 
                 this->mapaLogico[coordi][coordj] = VAZIO;
+                this->vitoria--;
             }
             else if(this->mapaLogico[coordi][coordj] == ICC){
                 this->ovelhas[i]->setEstado(Ovelha::INVADIU);
@@ -284,15 +291,17 @@ tipoGame State_play::update(){
     this->updateOvelhas();
     this->updateMateus(ovelhas_mortas);
 
+    this->progresso->setOvelhasRestantes(this->vitoria);
+
     if(playAPCBase::duracao(this->timer, 3000)){
         this->dificuldade *= 0.95;
         this->timer = playAPCBase::tempo();
     }
 
-    if(ApertouTecla('W'))
+    if(this->vitoria == 0)
         return GAME_WIN;
     if(ApertouTecla('L'))
-        return GAME_WIN;
+        return GAME_LOSE;
 
     return GAME_NO_CHANGE;
 }

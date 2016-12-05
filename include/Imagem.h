@@ -1,6 +1,7 @@
 #pragma once
 
 #include <playAPC/playapc.h>
+#include <sstream>
 
 using namespace std;
 
@@ -24,7 +25,17 @@ class Imagem{
             DIALOGO2,
             DIALOGO4,
             INVADIU,
-            NADA
+            NADA,
+            NUM_0,
+            NUM_1,
+            NUM_2,
+            NUM_3,
+            NUM_4,
+            NUM_5,
+            NUM_6,
+            NUM_7,
+            NUM_8,
+            NUM_9,
         }tipoImg;
 
         int getImg(tipoImg img);
@@ -34,5 +45,5 @@ class Imagem{
         ~Imagem();
         static Imagem *instance;
 
-        int jogador[2], ovelha[4], livro, constituicao, bg_jogo, bg_inicio, bg_end_lose, bg_end_win, nada, cenario_dialogo, dialogo1, dialogo2, dialogo4, invadiu;
+        int jogador[2], num[10], ovelha[4], livro, constituicao, bg_jogo, bg_inicio, bg_end_lose, bg_end_win, nada, cenario_dialogo, dialogo1, dialogo2, dialogo4, invadiu;
 };

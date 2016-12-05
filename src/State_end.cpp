@@ -14,6 +14,9 @@ void State_end::load(tipoGame stack){
         img = instanceimg->getImg(Imagem::BG_END_WIN);
         this->cena = State_end::CENA_WIN;
     }
+    else{
+        img = instanceimg->getImg(Imagem::NADA);
+    }
 
     instancebg->setBG(img);
 }

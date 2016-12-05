@@ -3,12 +3,12 @@
 State_manager::State_manager(){
     input = input->getInstance();
 
-    estadoAtual = new State_play();
+    estadoAtual = new State_op();
     estadoAtual->load();
 
     input->update();
 
-    stack = GAME_PLAY;
+    stack = GAME_START;
 }
 
 State_manager::~State_manager(){

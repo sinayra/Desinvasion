@@ -7,6 +7,8 @@
 #include "Ovelha.h"
 #include "Tiro.h"
 #include "playAPCBase.h"
+#include "Progresso.h"
+#include "Sound.h"
 #include <vector>
 #include <stdlib.h>
 
@@ -28,12 +30,15 @@ class State_play : public State{
 
         cellState mapaLogico[MAP_X_DIM][MAP_Y_DIM + 1];
         Ponto mapaVisu[MAP_X_DIM][MAP_Y_DIM + 1]; //esse +1 é para ajustar o ataque do Mateus, somente para a visualização do ataque
+
         Background *instancebg;
         Imagem *instanceimg;
         Mateus *mateus;
         vector<Ovelha*> ovelhas;
         Tiro *tiro;
         vector<Tiro*> constituicao;
+        Progresso *progresso;
+
         milliseconds *tic, timer;
         int dificuldade, especial;
 
@@ -43,6 +48,8 @@ class State_play : public State{
         int checkCollision();
 
         unsigned int random_uint(unsigned int limit);
+
+        int vitoria;
 
     public:
         void load(tipoGame stack = GAME_NO_CHANGE);

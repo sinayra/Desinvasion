@@ -58,6 +58,10 @@ void Ovelha::setEstado(tipoEstadoOvelha st){
             img = instanceimg->getImg(Imagem::INVADIU);
             this->invadiu = true;
         break;
+
+        default:
+            img = instanceimg->getImg(Imagem::NADA);
+        break;
     }
 
     AssociaImagem(img, RETANGULO, this->ovelhaq); /**/
@@ -144,7 +148,7 @@ void Ovelha::update(){
     }
     else if(this->st == Ovelha::DANO){
 
-        if(playAPCBase::duracao(this->tic, 1000)){
+        if(playAPCBase::duracao(this->tic, 300)){
             if(this->vida <= 0)
                 this->setEstado(Ovelha::MORTA);
             else if(this->lider)
