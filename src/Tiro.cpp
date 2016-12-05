@@ -35,7 +35,7 @@ void Tiro::setPosicao(int x, int y){
     p.x = x;
     p.y = y;
 
-    std::cout << "p.x: " << p.x << endl;
+    //std::cout << "p.x: " << p.x << endl;
     //getchar();
 
     Move(p, this->tirog);
@@ -62,11 +62,15 @@ void Tiro::setCoordj(int j){
     this->coordj = j;
 }
 
-void Tiro::atira(int i, int j){
+void Tiro::atira(int i, int j, bool especial){
     int img;
 
     instanceimg = Imagem::getInstance();
-    img = instanceimg->getImg(Imagem::LIVRO);
+
+    if(especial)
+        img = instanceimg->getImg(Imagem::CONSTITUICAO);
+    else
+        img = instanceimg->getImg(Imagem::LIVRO);
 
     this->coordi = i;
     this->coordj = j;

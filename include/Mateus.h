@@ -24,6 +24,9 @@ class Mateus
         int getCoordi();
         int getCoordj();
 
+        bool getEspecial();
+        void resetEspecial();
+
         void setCoordi(int i);
         void setCoordj(int j);
 
@@ -35,7 +38,7 @@ class Mateus
         int mateusq, mateusg;
         int combo_ovelhas;
         int combo_ataque;
-        bool ataque;
+        bool ataque, especial;
         Imagem *instanceimg;
         Sound *instancesnd;
         bool espaco;

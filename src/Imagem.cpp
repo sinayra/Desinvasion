@@ -23,6 +23,7 @@ Imagem::Imagem(){
     jogador[0] = AbreImagem("resources/PNG/Estudante_frame1_cartoon.png");
     jogador[1] = AbreImagem("resources/PNG/Estudante_frame2_catoon.png");
     livro = AbreImagem("resources/PNG/livro.png");
+    constituicao = AbreImagem("resources/PNG/constituição.png");
     nada = AbreImagem("resources/PNG/nada.png");
     cenario_dialogo = AbreImagem("resources/PNG/cenario_dialogo.png");
     dialogo1 = AbreImagem("resources/PNG/dialog1.png");
@@ -74,6 +75,10 @@ int Imagem::getImg(tipoImg img){
 
         case Imagem::LIVRO:
             return livro;
+        break;
+
+        case Imagem::CONSTITUICAO:
+            return constituicao;
         break;
 
         case Imagem::BG_DIALOGO:

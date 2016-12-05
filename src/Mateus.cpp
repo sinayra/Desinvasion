@@ -7,7 +7,7 @@ Mateus::Mateus(float x, float y, float tamw, float tamh, int i, int j): coordx(x
     this->combo_ovelhas = 0;
 	this->combo_ataque = 0;
 	this->ataque = false;
-        
+
     p.x = this->coordx;
     p.y = this->coordy;
 
@@ -18,9 +18,9 @@ Mateus::Mateus(float x, float y, float tamw, float tamh, int i, int j): coordx(x
 
     instanceimg = Imagem::getInstance();
     img = instanceimg->getImg(Imagem::JOGADOR_STAND);
-    
+
     instancesnd = Sound::getInstance();
-    
+
     AssociaImagem(img, RETANGULO, this->mateusq); /**/
 }
 
@@ -34,6 +34,15 @@ bool Mateus::getAtirou(){
 
 int Mateus::getCombo(){
     return this->combo_ataque;
+}
+
+bool Mateus::getEspecial(){
+    return this->especial;
+}
+
+void Mateus::resetEspecial(){
+    this->especial = false;
+    this->combo_ovelhas = 0;
 }
 
 int Mateus::getCoordi(){
@@ -72,7 +81,7 @@ void Mateus::update(int ovelhas_mortas){
     }
 
     if(ApertouTecla(TECLA_ESPACO)){
-		
+
 		if(!instancesnd->getIsPlaying())
 		{
 			instancesnd->play(5);
@@ -113,6 +122,13 @@ void Mateus::update(int ovelhas_mortas){
 
         Redimensiona(1, 1, mateusg); /**/
     }
+
+    this->combo_ovelhas += ovelhas_mortas;
+
+    if(this->combo_ovelhas >= 10)
+        this->especial = true;
+    else
+        this->especial = false;
 }
 
 Mateus::~Mateus(){

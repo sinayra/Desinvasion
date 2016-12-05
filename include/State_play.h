@@ -19,6 +19,9 @@ class State_play : public State{
             VAZIO,
             OVELHA,
             TIRO,
+            CONST0,
+            CONST1,
+            CONST2,
             ICC,
             INVADIDO
         }cellState;
@@ -30,11 +33,14 @@ class State_play : public State{
         Mateus *mateus;
         vector<Ovelha*> ovelhas;
         Tiro *tiro;
+        vector<Tiro*> constituicao;
         milliseconds *tic, timer;
-        int dificuldade;
+        int dificuldade, especial;
 
         void updateMateus(int ovelhas);
-        int updateOvelhas();
+        void updateOvelhas();
+        void updateTiro(Tiro *t, cellState st);
+        int checkCollision();
 
         unsigned int random_uint(unsigned int limit);
 
@@ -43,6 +49,4 @@ class State_play : public State{
         void unload();
         tipoGame update();
         void render();
-
-        void checkCollision();
 };

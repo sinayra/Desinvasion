@@ -45,10 +45,15 @@ void State_play::load(tipoGame stack){
     p = this->mapaVisu[MAP_X_DIM - 1][MAP_Y_DIM/2];
 
     this->mateus = new Mateus(p.x, p.y, cellWidth, cellHeight, MAP_X_DIM - 1, MAP_Y_DIM/2);
+    this->especial = 3;
 
     this->tic = (milliseconds*) malloc(sizeof(milliseconds) * MAP_Y_DIM);
 
     this->tiro = new Tiro(mapaVisu[MAP_X_DIM - 3][MAP_Y_DIM - 3].x, 0, cellWidth, cellHeight, 0, 0);
+
+    this->constituicao.push_back(new Tiro(mapaVisu[MAP_X_DIM - 3][MAP_Y_DIM - 3].x, 0, cellWidth, cellHeight, 0, 0));
+    this->constituicao.push_back(new Tiro(mapaVisu[MAP_X_DIM - 3][MAP_Y_DIM - 3].x, 0, cellWidth, cellHeight, 0, 0));
+    this->constituicao.push_back(new Tiro(mapaVisu[MAP_X_DIM - 3][MAP_Y_DIM - 3].x, 0, cellWidth, cellHeight, 0, 0));
 
     for(int i = 0; i < MAP_Y_DIM; i++){
         this->ovelhas.push_back(new Ovelha(this->mapaVisu[0][i].x + 3, this->mapaVisu[0][0].y, (cellWidth) * 0.75, (cellHeight + 10) * 0.75, 0, i));
@@ -71,7 +76,8 @@ void State_play::unload(){
 }
 
 
-void State_play::checkCollision(){
+int State_play::checkCollision(){
+    int ovelhas_mortas = 0;
     for(int i = 0; i < MAP_Y_DIM; i++){
         if(this->ovelhas[i]->isViva() && !this->ovelhas[i]->getInvadiu()){
             int coordi, coordj;
@@ -93,7 +99,8 @@ void State_play::checkCollision(){
                 this->ovelhas[i]->decrementaVida();
                 this->tiro->cessa();
 
-                if(this->ovelhas[i]->getVida() == 0){
+                if(this->ovelhas[i]->getVida() <= 0){
+                    ovelhas_mortas++;
                     this->mapaLogico[coordi][coordj] = VAZIO;
                     this->tic[i] = playAPCBase::tempo();
                 }
@@ -101,17 +108,59 @@ void State_play::checkCollision(){
                     this->mapaLogico[coordi][coordj] = OVELHA;
                 }
             }
+            else if(this->mapaLogico[coordi][coordj] == CONST0 || this->mapaLogico[coordi][coordj] == CONST1 || this->mapaLogico[coordi][coordj] == CONST2){
+                this->ovelhas[i]->setEstado(Ovelha::DANO);
+                this->ovelhas[i]->setVida(0);
+                this->tic[i] = playAPCBase::tempo();
+
+                if(this->mapaLogico[coordi][coordj] == CONST0)
+                    this->constituicao[0]->cessa();
+                else if(this->mapaLogico[coordi][coordj] == CONST1)
+                    this->constituicao[1]->cessa();
+                else
+                    this->constituicao[2]->cessa();
+
+                this->mapaLogico[coordi][coordj] = VAZIO;
+            }
             else if(this->mapaLogico[coordi][coordj] == ICC){
                 this->ovelhas[i]->setEstado(Ovelha::INVADIU);
             }
         }
     }
+
+    return ovelhas_mortas;
 }
 
-void State_play::updateMateus(int ovelhas){
+void State_play::updateTiro(Tiro *t, cellState st){
+
+    if(t->getAtirou()){
+        int linha, coluna;
+
+        coluna = t->getCoordj();
+        linha = t->getCoordi();
+
+        if(this->mapaLogico[linha][coluna] != ICC)
+            this->mapaLogico[linha][coluna] = VAZIO;
+
+        t->update();
+        coluna = t->getCoordj();
+        linha = t->getCoordi();
+
+        if(linha < 0)
+            t->cessa();
+        else{
+            t->setPosicao(mapaVisu[linha][coluna].x, mapaVisu[linha][coluna].y);
+
+            if(this->mapaLogico[linha][coluna] != ICC)
+                this->mapaLogico[linha][coluna] = st;
+        }
+    }
+}
+
+void State_play::updateMateus(int ovelhas_mortas){
     int j;
 
-    this->mateus->update(0);
+    this->mateus->update(ovelhas_mortas);
     j = this->mateus->getCoordj();
 
     //Verifica se passou dos limites do mapa
@@ -124,34 +173,36 @@ void State_play::updateMateus(int ovelhas){
         if(this->mateus->getCombo()) //é o da mão esquerda
             j++;
 
-        if(this->mateus->getEspaco() && !this->tiro->getAtirou())
-            this->tiro->atira(this->mateus->getCoordi(), this->mateus->getCoordj());
+        if(this->mateus->getEspaco() && !this->tiro->getAtirou()){
+            if(this->mateus->getEspecial()){
+
+                this->constituicao[1]->atira(this->mateus->getCoordi(), this->mateus->getCoordj(), true);
+
+                if(this->mateus->getCoordj() == 0){
+                    this->constituicao[2]->atira(this->mateus->getCoordi(), this->mateus->getCoordj() + 1, true);
+                    this->constituicao[0]->atira(this->mateus->getCoordi(), this->mateus->getCoordj() + 2, true);
+                }
+                else if(this->mateus->getCoordj() == MAP_Y_DIM - 1){
+                    this->constituicao[0]->atira(this->mateus->getCoordi(), this->mateus->getCoordj() - 1, true);
+                    this->constituicao[2]->atira(this->mateus->getCoordi(), this->mateus->getCoordj() - 2, true);
+                }
+                else{
+                    this->constituicao[0]->atira(this->mateus->getCoordi(), this->mateus->getCoordj() - 1, true);
+                    this->constituicao[2]->atira(this->mateus->getCoordi(), this->mateus->getCoordj() + 1, true);
+                }
+                this->mateus->resetEspecial();
+            }
+            else
+                this->tiro->atira(this->mateus->getCoordi(), this->mateus->getCoordj(), false);
+        }
     }
 
     mateus->setPosicao(mapaVisu[MAP_X_DIM - 1][j].x); //Atualiza posição do Mateus
 
-    if(this->tiro->getAtirou()){
-        int linha, coluna;
-
-        coluna = this->tiro->getCoordj();
-        linha = this->tiro->getCoordi();
-
-        if(this->mapaLogico[linha][coluna] != ICC)
-            this->mapaLogico[linha][coluna] = VAZIO;
-
-        this->tiro->update();
-        coluna = this->tiro->getCoordj();
-        linha = this->tiro->getCoordi();
-
-        if(linha < 0)
-            this->tiro->cessa();
-        else{
-            this->tiro->setPosicao(mapaVisu[linha][coluna].x, mapaVisu[linha][coluna].y);
-
-            if(this->mapaLogico[linha][coluna] != ICC)
-                this->mapaLogico[linha][coluna] = TIRO;
-        }
-    }
+    updateTiro(this->tiro, TIRO);
+    updateTiro(this->constituicao[0], CONST0);
+    updateTiro(this->constituicao[1], CONST1);
+    updateTiro(this->constituicao[2], CONST2);
 }
 
 /* Random integer in [0, limit) */
@@ -170,7 +221,7 @@ unsigned int State_play::random_uint(unsigned int limit) {
     return u.i % limit;
 }
 
-int State_play::updateOvelhas(){
+void State_play::updateOvelhas(){
 
     for(int i = 0; i < MAP_Y_DIM; i++){
 
@@ -194,7 +245,7 @@ int State_play::updateOvelhas(){
         else{
             int r = this->ovelhas[i]->getRespawn();
             if(r == 0){
-                cout << "ovelha " << i << endl;
+                //cout << "ovelha " << i << endl;
                 int sorteia = (int)(random_uint(this->dificuldade));
 
                 int tempo = 500 + sorteia;
@@ -224,16 +275,14 @@ int State_play::updateOvelhas(){
         }
     }
 
-    return 0;
 }
 
 tipoGame State_play::update(){
-    int ovelhas;
+    int ovelhas_mortas;
 
-    ovelhas = this->updateOvelhas();
-    this->updateMateus(ovelhas);
-
-    this->checkCollision();
+    ovelhas_mortas = this->checkCollision();
+    this->updateOvelhas();
+    this->updateMateus(ovelhas_mortas);
 
     if(playAPCBase::duracao(this->timer, 3000)){
         this->dificuldade *= 0.95;

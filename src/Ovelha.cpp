@@ -145,7 +145,7 @@ void Ovelha::update(){
     else if(this->st == Ovelha::DANO){
 
         if(playAPCBase::duracao(this->tic, 1000)){
-            if(this->vida == 0)
+            if(this->vida <= 0)
                 this->setEstado(Ovelha::MORTA);
             else if(this->lider)
                 this->st = Ovelha::VIVA_LIDER;

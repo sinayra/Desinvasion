@@ -18,7 +18,7 @@ class Tiro
 
         bool getAtirou();
 
-        void atira(int i, int j);
+        void atira(int i, int j, bool especial);
         void cessa();
         void update();
 

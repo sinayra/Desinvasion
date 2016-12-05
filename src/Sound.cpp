@@ -81,7 +81,7 @@ void *Sound::tocaSom(){
 	}
 	if(instance->getId() == 5){
 		int r = rand()%100;
-		printf("r = %d\n",r);
+		//printf("r = %d\n",r);
 		if(r>=0 && r<33)
 		{
 			PlaySound("resources/SOUND/08_shot_and_book.wav", NULL, SND_FILENAME);
