@@ -3,9 +3,6 @@
 State_manager::State_manager(){
     input = input->getInstance();
 
-    estadoAtual = new State_op();
-    estadoAtual->load();
-
     input->update();
 
     stack = GAME_START;
@@ -21,7 +18,7 @@ void State_manager::run(){
     do{
         quit = input->quitGame();
 
-        switch(estadoAtual->update()){
+        switch(stack){
             case GAME_NO_CHANGE:
             break;
 
@@ -43,7 +40,7 @@ void State_manager::run(){
             break;
 
             case GAME_START:
-                estadoAtual->unload();
+                //estadoAtual->unload();
                 estadoAtual = new State_op();
                 estadoAtual->load(stack);
                 stack = GAME_START;
@@ -58,7 +55,7 @@ void State_manager::run(){
 
 
         }
-
+        stack = estadoAtual->update();
         estadoAtual->render();
     }while(!quit);
 

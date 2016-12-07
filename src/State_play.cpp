@@ -64,18 +64,24 @@ void State_play::load(tipoGame stack){
 
     this->progresso = new Progresso();
     this->vitoria = 30;
+    this->derrota = 4;
 
     this->timer = playAPCBase::tempo();
 }
 
 void State_play::unload(){
+    delete(this->progresso);
     delete(this->mateus);
 
     for(int i = 0; i < MAP_Y_DIM; i++){
         delete(this->ovelhas[i]);
     }
 
-    delete(progresso);
+    for(int i = 0; i < 3; i++){
+        delete(this->constituicao[i]);
+    }
+
+    delete(this->tiro);
     free(this->tic);
 }
 
@@ -131,6 +137,7 @@ int State_play::checkCollision(){
             }
             else if(this->mapaLogico[coordi][coordj] == ICC){
                 this->ovelhas[i]->setEstado(Ovelha::INVADIU);
+                this->derrota--;
             }
         }
     }
@@ -300,7 +307,7 @@ tipoGame State_play::update(){
 
     if(this->vitoria == 0)
         return GAME_WIN;
-    if(ApertouTecla('L'))
+    if(this->derrota == 0)
         return GAME_LOSE;
 
     return GAME_NO_CHANGE;

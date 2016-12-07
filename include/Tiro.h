@@ -29,7 +29,6 @@ class Tiro
         int coordx, coordy, coordi, coordj, coordi_original, coordj_original;
         int tiroq, tirog, rot;
         Imagem *instanceimg;
-        vector<Tiro*> tiro;
 
         milliseconds tic;
 };

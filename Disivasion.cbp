@@ -34,6 +34,11 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add option="-glfw" />
+					<Add option="-lwinmm" />
+					<Add option="-lplayAPC" />
+					<Add library="../../CodeBlocks/MinGW/lib/libcrypto-1_1.a" />
+					<Add library="../../CodeBlocks/MinGW/lib/libcrypt32.a" />
 				</Linker>
 			</Target>
 		</Build>
@@ -45,6 +50,8 @@
 		<Unit filename="include/Input.h" />
 		<Unit filename="include/Mateus.h" />
 		<Unit filename="include/Ovelha.h" />
+		<Unit filename="include/Progresso.h" />
+		<Unit filename="include/Sound.h" />
 		<Unit filename="include/State.h" />
 		<Unit filename="include/State_end.h" />
 		<Unit filename="include/State_manager.h" />
@@ -57,6 +64,8 @@
 		<Unit filename="src/Input.cpp" />
 		<Unit filename="src/Mateus.cpp" />
 		<Unit filename="src/Ovelha.cpp" />
+		<Unit filename="src/Progresso.cpp" />
+		<Unit filename="src/Sound.cpp" />
 		<Unit filename="src/State_end.cpp" />
 		<Unit filename="src/State_manager.cpp" />
 		<Unit filename="src/State_op.cpp" />

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Imagem.h"
-#include "playAPC/playapc.h"
+#include "playAPCBase.h"
 
 
 class Progresso{
@@ -11,7 +11,7 @@ class Progresso{
 
         void setOvelhasRestantes(int qt);
     private:
-        int grupo3, grupo4;
+        int progressog;
         int dezq, uniq;
 
         Imagem *instanceimg;

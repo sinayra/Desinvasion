@@ -87,7 +87,10 @@ void Mateus::update(int ovelhas_mortas){
 
 		if(!instancesnd->getIsPlaying())
 		{
-			instancesnd->play(5);
+		    if(!this->especial)
+                instancesnd->play(5);
+            else
+                instancesnd->play(11);
         }
 		this->espaco = true;
         this->tic = playAPCBase::tempo();
@@ -140,6 +143,9 @@ void Mateus::update(int ovelhas_mortas){
             this->cor_especial = 255;
 
         Pintar(255, 255, this->cor_especial, RETANGULO, this->mateusq);
+    }
+    else{
+        Pintar(255, 255, 255, RETANGULO, this->mateusq);
     }
 }
 

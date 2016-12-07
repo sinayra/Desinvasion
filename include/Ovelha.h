@@ -2,7 +2,6 @@
 
 #include "playAPCBase.h"
 #include "Imagem.h"
-#include <playAPC/playapc.h>
 #include <iostream>
 
 using namespace std;

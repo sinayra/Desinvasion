@@ -10,6 +10,7 @@ void State_op::load(tipoGame stack){
     img = instanceimg->getImg(Imagem::BG_DIALOGO);
 
     instancebg->setBG(img);
+    instancesnd = Sound::getInstance();
 
     this->cena = State_op::CENA_1;
     this->tic = playAPCBase::tempo();
@@ -41,7 +42,11 @@ tipoGame State_op::update(){
             Pintar(255,255,255);
             AssociaImagem(img);
             Desenha1Frame();
-            PlaySound("resources/SOUND/sheep.wav", NULL, SND_FILENAME);
+
+            if(!instancesnd->getIsPlaying())
+            {
+                instancesnd->play(2);
+            }
 
             this->cena = State_op::NO_CHANGE;
             this->cenaant = State_op::CENA_1;
@@ -58,7 +63,11 @@ tipoGame State_op::update(){
             Pintar(255,255,255);
             AssociaImagem(img);
             Desenha1Frame();
-            PlaySound("resources/SOUND/citizen.wav", NULL, SND_FILENAME);
+
+            if(!instancesnd->getIsPlaying())
+            {
+                instancesnd->play(3);
+            }
 
             this->cena = State_op::NO_CHANGE;
             this->cenaant = State_op::CENA_2;
@@ -73,7 +82,11 @@ tipoGame State_op::update(){
             img = instanceimg->getImg(Imagem::DIALOGO4);
             AssociaImagem(img, RETANGULO, this->grupoTelaOvelha);
             Desenha1Frame();
-            PlaySound("resources/SOUND/pig.wav", NULL, SND_FILENAME);
+
+            if(!instancesnd->getIsPlaying())
+            {
+                instancesnd->play(4);
+            }
 
             this->cena = State_op::NO_CHANGE;
             this->cenaant = State_op::CENA_3;
@@ -84,7 +97,7 @@ tipoGame State_op::update(){
     }
 
 
-    if(ApertouTecla(TECLA_ENTER) && playAPCBase::duracao(this->tic, 500)){
+    if(ApertouTecla(TECLA_ENTER) && playAPCBase::duracao(this->tic, 500) && !instancesnd->getIsPlaying()){
         if(this->cenaant == State_op::CENA_3)
             return GAME_PLAY;
         else

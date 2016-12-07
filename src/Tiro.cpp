@@ -23,7 +23,7 @@ Tiro::Tiro(float x, float y, float tamw, float tamh, int i, int j): coordx(x), c
 
     img = instanceimg->getImg(Imagem::NADA);
 
-    AssociaImagem(img, RETANGULO, this->tirog); /**/
+    AssociaImagem(img, RETANGULO, this->tiroq); /**/
 
     this->rot = 0;
 
@@ -84,7 +84,7 @@ void Tiro::cessa(){
     int img;
 
     img = instanceimg->getImg(Imagem::NADA);
-    AssociaImagem(img, RETANGULO, this->tirog); /**/
+    AssociaImagem(img, RETANGULO, this->tiroq); /**/
 
     this->atirou = false;
 
@@ -103,4 +103,8 @@ void Tiro::update(){
         this->coordi--;
         this->tic = playAPCBase::tempo();
     }
+}
+
+Tiro::~Tiro(){
+    ApagaGrupo(this->tirog);
 }

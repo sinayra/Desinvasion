@@ -4,8 +4,7 @@
 #include "Background.h"
 #include "Imagem.h"
 #include "playAPCBase.h"
-#include <windows.h>
-#include <mmsystem.h>
+#include "Sound.h"
 
 class State_op : public State{
     private:
@@ -19,6 +18,7 @@ class State_op : public State{
 
         Background *instancebg;
         Imagem *instanceimg;
+        Sound *instancesnd;
 
         int dialog1,dialog2;
         int grupoTelaInicial,grupoTelaPorco,grupoTelaOvelha,grupoTelaCitizen;

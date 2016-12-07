@@ -97,6 +97,9 @@ void *Sound::tocaSom(){
 		}
 
 	}
+	if(instance->getId() == 11){
+		PlaySound("resources/SOUND/11_meteoro.wav", NULL, SND_FILENAME);
+	}
 	/*
 	if(id == 6){
 		PlaySound("resources/SOUND/06_shoot.wav", NULL, SND_FILENAME);

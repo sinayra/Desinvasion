@@ -49,7 +49,7 @@ class State_play : public State{
 
         unsigned int random_uint(unsigned int limit);
 
-        int vitoria;
+        int vitoria, derrota;
 
     public:
         void load(tipoGame stack = GAME_NO_CHANGE);

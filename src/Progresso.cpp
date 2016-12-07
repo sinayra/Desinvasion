@@ -6,7 +6,7 @@ Progresso::Progresso(){
     pPrincipal.x = 120;
 	pPrincipal.y = 80;
 
-	this->grupo3 = CriaGrupo();
+	this->progressog = CriaGrupo();
 
 	this->dezq = CriaRetangulo(10,15,pPrincipal);
 	Pintar(255, 255, 255);
@@ -82,6 +82,5 @@ void Progresso::setOvelhasRestantes(int qt){
 }
 
 Progresso::~Progresso(){
-    CriaGrupo(); //bug da playAPC
-    ApagaGrupo(this->grupo3);
+    ApagaGrupo(this->progressog);
 }
