@@ -1,18 +1,13 @@
 #include "../include/State_op.h"
 
 void State_op::load(tipoGame stack){
-    int img;
 
     this->instancebg = Background::getInstance();
     this->instanceimg = Imagem::getInstance();
 
-    cout << "Opening" << endl;
-    img = instanceimg->getImg(Imagem::BG_DIALOGO);
-
-    instancebg->setBG(img);
     instancesnd = Sound::getInstance();
 
-    this->cena = State_op::CENA_1;
+    this->cena = State_op::CENA_0;
     this->tic = playAPCBase::tempo();
 
     while(playAPCBase::duracao(this->tic, 500));
@@ -29,8 +24,26 @@ tipoGame State_op::update(){
     int img;
 
     switch(this->cena){
+        case CENA_0:
+            this->tic = playAPCBase::tempo();
+
+            img = instanceimg->getImg(Imagem::BG_INICIO);
+            instancebg->setBG(img);
+
+            if(!instancesnd->getIsPlaying())
+            {
+                instancesnd->play(1);
+            }
+
+            this->cena = State_op::NO_CHANGE;
+            this->cenaant = State_op::CENA_0;
+        break;
         case CENA_1:
             this->tic = playAPCBase::tempo();
+
+            img = instanceimg->getImg(Imagem::BG_DIALOGO);
+
+            instancebg->setBG(img);
 
             this->pPrincipal.x = 150-146;
             this->pPrincipal.y = 100-75;

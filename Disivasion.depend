@@ -88,7 +88,7 @@
 	"State_end.h"
 	"Input.h"
 
-1481115442 d:\github\disinvasion\include\state_op.h
+1481118487 d:\github\disinvasion\include\state_op.h
 	"State.h"
 	"Background.h"
 	"Imagem.h"
@@ -156,7 +156,7 @@
 1481117970 source:d:\github\disinvasion\src\state_op.cpp
 	"../include/State_op.h"
 
-1481118164 source:d:\github\disinvasion\src\state_play.cpp
+1481118327 source:d:\github\disinvasion\src\state_play.cpp
 	"../include/State_play.h"
 
 1480980730 d:\github\disinvasion\include\imagem.h

@@ -10,6 +10,7 @@ class State_op : public State{
     private:
 
         enum{
+            CENA_0,
             CENA_1,
             CENA_2,
             CENA_3,

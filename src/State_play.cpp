@@ -9,8 +9,6 @@ void State_play::load(tipoGame stack){
     float cellHeight = 2 * HEIGHT/MAP_Y_DIM;
     int img;
 
-    cout << "Play" << endl;
-
     this->dificuldade = 10000;
 
     p.y = HEIGHT - cellHeight;
